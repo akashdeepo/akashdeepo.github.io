@@ -4,7 +4,7 @@ A modern, interactive resume website showcasing quantitative finance research, m
 
 ## 🚀 Live Demo
 
-Visit the live website: [https://akashdeepo.github.io/interactive-resume](https://akashdeepo.github.io/interactive-resume)
+Visit the live website: [https://akashdeepo.github.io/](https://akashdeepo.github.io/)
 
 ## ✨ Features
 
