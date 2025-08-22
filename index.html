@@ -34,8 +34,6 @@
     <link rel="manifest" href="/site.webmanifest">
     
     <!-- Preconnect for performance -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     
     <!-- Stylesheets -->
@@ -43,7 +41,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer">
     
     <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js" defer></script>
     
     <!-- Schema.org structured data -->
@@ -174,7 +171,7 @@
     </section>
 
     <!-- About Section -->
-    <section id="about" class="about">
+    <section id="about" class="section about">
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">About Me</h2>
@@ -239,7 +236,7 @@
     </section>
 
     <!-- Research Section -->
-    <section id="research" class="research">
+    <section id="research" class="section research">
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">Research & Publications</h2>
@@ -320,16 +317,16 @@
     </section>
 
     <!-- Experience Section -->
-    <section id="experience" class="experience">
+    <section id="experience" class="section experience">
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">Professional Experience</h2>
                 <p class="section-subtitle">Research, innovation, and leadership in quantitative finance</p>
             </div>
-            <div class="experience-timeline">
-                <div class="experience-item">
-                    <div class="experience-date">2024 - Present</div>
-                    <div class="experience-content">
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">2024 - Present</div>
+                    <div class="timeline-content">
                         <h3>PhD Student & Researcher</h3>
                         <h4>Mathematical Finance, Texas Tech University</h4>
                         <p><strong>Supervisor:</strong> Dr. Svetlozar Rachev</p>
@@ -343,8 +340,8 @@
                 </div>
 
                 <div class="experience-item featured">
-                    <div class="experience-date">2022 - Present</div>
-                    <div class="experience-content">
+                    <div class="timeline-date">2022 - Present</div>
+                    <div class="timeline-content">
                         <h3>Co-Founder & Lead Researcher</h3>
                         <h4>DeepAI Finance LLC</h4>
                         <div class="company-link">
@@ -366,9 +363,9 @@
                     </div>
                 </div>
 
-                <div class="experience-item">
-                    <div class="experience-date">2024 - Present</div>
-                    <div class="experience-content">
+                <div class="timeline-item">
+                    <div class="timeline-date">2024 - Present</div>
+                    <div class="timeline-content">
                         <h3>Teaching Assistant & Student Assistant</h3>
                         <h4>Texas Tech University</h4>
                         <ul>
@@ -380,9 +377,9 @@
                     </div>
                 </div>
 
-                <div class="experience-item">
-                    <div class="experience-date">2021 - 2022</div>
-                    <div class="experience-content">
+                <div class="timeline-item">
+                    <div class="timeline-date">2021 - 2022</div>
+                    <div class="timeline-content">
                         <h3>Undergraduate Research Assistant</h3>
                         <h4>Department of Physics, Texas Tech University</h4>
                         <ul>
@@ -396,13 +393,13 @@
     </section>
 
     <!-- Skills Section -->
-    <section id="skills" class="skills">
+    <section id="skills" class="section skills">
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">Technical Skills</h2>
                 <p class="section-subtitle">Expertise spanning quantitative finance, machine learning, and full-stack development</p>
             </div>
-            <div class="skills-grid">
+            <div class="skills-grid grid grid-3">
                 <div class="skill-category">
                     <h3><i class="fas fa-code"></i> Programming Languages</h3>
                     <div class="skill-list">
@@ -503,13 +500,13 @@
     </section>
 
     <!-- Achievements Section -->
-    <section id="achievements" class="achievements">
+    <section id="achievements" class="section achievements">
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">Achievements & Recognition</h2>
                 <p class="section-subtitle">Demonstrating excellence in competitive machine learning and research</p>
             </div>
-            <div class="achievements-grid">
+            <div class="achievements-grid grid grid-2">
                 <div class="achievement-card highlight">
                     <div class="achievement-icon">
                         <i class="fab fa-kaggle"></i>
@@ -572,48 +569,23 @@
                 </div>
             </div>
 
-            <div class="performance-charts">
-                <h3>Research Impact Visualization</h3>
-                <div class="charts-grid">
-                    <div class="chart-container">
-                        <canvas id="publicationsChart"></canvas>
-                    </div>
-                    <div class="chart-container">
-                        <canvas id="skillsRadar"></canvas>
-                    </div>
-                </div>
-            </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="contact">
+    <section id="contact" class="section contact">
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">Get In Touch</h2>
                 <p class="section-subtitle">Let's discuss opportunities in quantitative finance, research collaboration, or AI innovation</p>
             </div>
-            <div class="contact-content">
+            <div class="contact-grid">
                 <div class="contact-info">
                     <div class="contact-item">
                         <i class="fas fa-envelope" style="color: #ea4335;"></i>
                         <div class="contact-details">
                             <h3>Email</h3>
                             <a href="mailto:akash404deep@gmail.com">akash404deep@gmail.com</a>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fas fa-phone" style="color: #25d366;"></i>
-                        <div class="contact-details">
-                            <h3>Phone</h3>
-                            <a href="tel:806-535-9027">806-535-9027</a>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fas fa-map-marker-alt" style="color: #4285f4;"></i>
-                        <div class="contact-details">
-                            <h3>Location</h3>
-                            <span>Lubbock, TX</span>
                         </div>
                     </div>
                 </div>
@@ -646,6 +618,6 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="script-new.js"></script>
 </body>
 </html>
