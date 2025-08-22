@@ -42,6 +42,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Particle.js Configuration
 function initializeParticles() {
+    if (!document.getElementById('particles-js')) return;
+    
+    const theme = document.body.getAttribute('data-theme') || 'dark';
+    const themeColors = {
+        dark: ['#6b8cff', '#8892a8', '#b8c5d6'],
+        light: ['#2563eb', '#64748b', '#374151'],
+        chill: ['#64748b', '#94a3b8', '#cbd5e1']
+    };
+    const colors = themeColors[theme] || themeColors.dark;
+    
     particlesJS('particles-js', {
         particles: {
             number: {
@@ -84,7 +94,7 @@ function initializeParticles() {
             line_linked: {
                 enable: true,
                 distance: 150,
-                color: colors[0] || '#6b8cff',
+                color: colors[0] || '#00d4ff',
                 opacity: 0.2,
                 width: 1
             },
@@ -938,128 +948,6 @@ function initializeLoadingEffects() {
     });
 }
 
-// Particle Configuration
-function initializeParticles() {
-    if (!document.getElementById('particles-js')) return;
-    
-    const theme = document.body.getAttribute('data-theme') || 'dark';
-    const themeColors = {
-        dark: ['#6b8cff', '#8892a8', '#b8c5d6'],
-        light: ['#2563eb', '#64748b', '#374151'],
-        chill: ['#64748b', '#94a3b8', '#cbd5e1']
-    };
-    const colors = themeColors[theme] || themeColors.dark;
-    
-    try {
-        particlesJS('particles-js', {
-            particles: {
-            number: {
-                value: 120,
-                density: {
-                    enable: true,
-                    value_area: 800
-                }
-            },
-            color: {
-                value: colors
-            },
-            shape: {
-                type: ['circle', 'triangle', 'polygon'],
-                stroke: {
-                    width: 0,
-                    color: '#000000'
-                },
-                polygon: {
-                    nb_sides: 6
-                }
-            },
-            opacity: {
-                value: 0.8,
-                random: true,
-                anim: {
-                    enable: true,
-                    speed: 1.5,
-                    opacity_min: 0.1,
-                    sync: false
-                }
-            },
-            size: {
-                value: 4,
-                random: true,
-                anim: {
-                    enable: true,
-                    speed: 3,
-                    size_min: 0.1,
-                    sync: false
-                }
-            },
-            line_linked: {
-                enable: true,
-                distance: 150,
-                color: colors[0] || '#00d4ff',
-                opacity: 0.4,
-                width: 1.5
-            },
-            move: {
-                enable: true,
-                speed: 3,
-                direction: 'none',
-                random: true,
-                straight: false,
-                out_mode: 'out',
-                bounce: false,
-                attract: {
-                    enable: true,
-                    rotateX: 600,
-                    rotateY: 1200
-                }
-            }
-        },
-        interactivity: {
-            detect_on: 'canvas',
-            events: {
-                onhover: {
-                    enable: true,
-                    mode: 'grab'
-                },
-                onclick: {
-                    enable: true,
-                    mode: 'push'
-                },
-                resize: true
-            },
-            modes: {
-                grab: {
-                    distance: 200,
-                    line_linked: {
-                        opacity: 0.8
-                    }
-                },
-                bubble: {
-                    distance: 400,
-                    size: 50,
-                    duration: 2,
-                    opacity: 0.8,
-                    speed: 3
-                },
-                repulse: {
-                    distance: 250,
-                    duration: 0.4
-                },
-                push: {
-                    particles_nb: 6
-                },
-                remove: {
-                    particles_nb: 2
-                }
-            }
-        },
-        retina_detect: true
-        });
-    } catch (error) {
-        console.error('Failed to initialize particles:', error);
-    }
-}
 
 // Analytics Setup (placeholder for production)
 function initializeAnalytics() {
