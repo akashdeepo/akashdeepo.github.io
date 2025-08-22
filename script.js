@@ -1,9 +1,11 @@
 /* =============================================================================
-   AKASH DEEP - PORTFOLIO JAVASCRIPT
-   Clean, optimized, and professional
+   AKASH DEEP - PORTFOLIO JAVASCRIPT (TEST VERSION)
+   Clean, optimized with Monte Carlo background and single theme toggle
    ============================================================================= */
 
 'use strict';
+
+let monteCarloInstance = null;
 
 // -----------------------------------------------------------------------------
 // INITIALIZATION
@@ -16,10 +18,8 @@ document.addEventListener('DOMContentLoaded', function() {
         initializeAnimations();
         initializeLazyLoading();
         
-        // Initialize particles only if library is loaded
-        if (typeof particlesJS !== 'undefined') {
-            initializeParticles();
-        }
+        // Initialize Monte Carlo background
+        initializeMonteCarloBackground();
         
         // Optional features (only on non-mobile devices)
         if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches && 
@@ -115,42 +115,47 @@ function initializeNavigation() {
 }
 
 // -----------------------------------------------------------------------------
-// THEME SWITCHER
+// SINGLE THEME SWITCHER
 // -----------------------------------------------------------------------------
 function initializeThemeSwitcher() {
-    const themeButtons = document.querySelectorAll('.theme-btn');
+    const themeToggleBtn = document.querySelector('.theme-toggle-btn');
     const body = document.body;
     
-    themeButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            const theme = button.getAttribute('data-theme');
-            
-            // Update ARIA states
-            themeButtons.forEach(btn => {
-                btn.classList.remove('active');
-                btn.setAttribute('aria-pressed', 'false');
-            });
-            
-            // Set active theme
-            button.classList.add('active');
-            button.setAttribute('aria-pressed', 'true');
-            
-            // Apply theme
-            body.setAttribute('data-theme', theme);
-            
-            // Store theme preference
-            try {
-                localStorage.setItem('preferred-theme', theme);
-            } catch (e) {
-                console.warn('Could not save theme preference:', e);
-            }
-            
-            // Reinitialize particles with new colors
-            if (typeof particlesJS !== 'undefined') {
-                setTimeout(() => initializeParticles(), 100);
-            }
-        });
-    });
+    if (!themeToggleBtn) return;
+    
+    // Toggle function
+    const toggleTheme = () => {
+        const currentTheme = body.getAttribute('data-theme') || 'light';
+        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+        
+        // Apply theme
+        body.setAttribute('data-theme', newTheme);
+        
+        // Update button icon
+        const icon = themeToggleBtn.querySelector('i');
+        if (icon) {
+            icon.className = newTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+        }
+        
+        // Update ARIA label
+        themeToggleBtn.setAttribute('aria-label', 
+            newTheme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+        
+        // Store theme preference
+        try {
+            localStorage.setItem('preferred-theme', newTheme);
+        } catch (e) {
+            console.warn('Could not save theme preference:', e);
+        }
+        
+        // Update Monte Carlo colors
+        if (monteCarloInstance) {
+            monteCarloInstance.initializePaths();
+        }
+    };
+    
+    // Add click listener
+    themeToggleBtn.addEventListener('click', toggleTheme);
     
     // Load saved theme or detect system preference
     let savedTheme;
@@ -165,117 +170,31 @@ function initializeThemeSwitcher() {
         savedTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
     }
     
-    const savedThemeButton = document.querySelector(`[data-theme="${savedTheme}"]`);
-    if (savedThemeButton) {
-        themeButtons.forEach(btn => {
-            btn.classList.remove('active');
-            btn.setAttribute('aria-pressed', 'false');
-        });
-        savedThemeButton.classList.add('active');
-        savedThemeButton.setAttribute('aria-pressed', 'true');
-        body.setAttribute('data-theme', savedTheme);
+    // Apply saved theme
+    body.setAttribute('data-theme', savedTheme);
+    
+    // Update button icon and label
+    const icon = themeToggleBtn.querySelector('i');
+    if (icon) {
+        icon.className = savedTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
     }
+    themeToggleBtn.setAttribute('aria-label', 
+        savedTheme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
 }
 
 // -----------------------------------------------------------------------------
-// PARTICLES BACKGROUND
+// MONTE CARLO BACKGROUND
 // -----------------------------------------------------------------------------
-function initializeParticles() {
-    if (!document.getElementById('particles-js')) return;
-    
-    const theme = document.body.getAttribute('data-theme') || 'light';
-    const themeColors = {
-        dark: ['#e88762', '#da7756', '#bd5d3a'],
-        light: ['#da7756', '#bd5d3a', '#8B7355']
-    };
-    const colors = themeColors[theme] || themeColors.light;
+function initializeMonteCarloBackground() {
+    const canvas = document.getElementById('monte-carlo-canvas');
+    if (!canvas) return;
     
     try {
-        particlesJS('particles-js', {
-            particles: {
-                number: {
-                    value: 80,
-                    density: {
-                        enable: true,
-                        value_area: 800
-                    }
-                },
-                color: {
-                    value: colors
-                },
-                shape: {
-                    type: 'circle',
-                    stroke: {
-                        width: 0,
-                        color: '#000000'
-                    }
-                },
-                opacity: {
-                    value: 0.3,
-                    random: true,
-                    anim: {
-                        enable: true,
-                        speed: 1,
-                        opacity_min: 0.1,
-                        sync: false
-                    }
-                },
-                size: {
-                    value: 3,
-                    random: true,
-                    anim: {
-                        enable: true,
-                        speed: 2,
-                        size_min: 0.1,
-                        sync: false
-                    }
-                },
-                line_linked: {
-                    enable: true,
-                    distance: 150,
-                    color: colors[0],
-                    opacity: 0.2,
-                    width: 1
-                },
-                move: {
-                    enable: true,
-                    speed: 2,
-                    direction: 'none',
-                    random: false,
-                    straight: false,
-                    out_mode: 'out',
-                    bounce: false
-                }
-            },
-            interactivity: {
-                detect_on: 'canvas',
-                events: {
-                    onhover: {
-                        enable: true,
-                        mode: 'grab'
-                    },
-                    onclick: {
-                        enable: true,
-                        mode: 'push'
-                    },
-                    resize: true
-                },
-                modes: {
-                    grab: {
-                        distance: 140,
-                        line_linked: {
-                            opacity: 0.5
-                        }
-                    },
-                    push: {
-                        particles_nb: 4
-                    }
-                }
-            },
-            retina_detect: true
-        });
+        monteCarloInstance = new MonteCarloBackground('monte-carlo-canvas');
     } catch (error) {
-        console.error('Failed to initialize particles:', error);
+        console.error('Failed to initialize Monte Carlo background:', error);
+        // Fallback to regular background
+        canvas.style.display = 'none';
     }
 }
 
@@ -286,7 +205,7 @@ function initializeCustomCursor() {
     const cursor = document.querySelector('.custom-cursor');
     if (!cursor) return;
     
-    const interactiveElements = document.querySelectorAll('a, button, .timeline-item, .card, .nav-link');
+    const interactiveElements = document.querySelectorAll('a, button, .timeline-item, .card, .nav-link, .theme-toggle-btn');
     
     let mouseX = 0, mouseY = 0;
     
@@ -421,14 +340,15 @@ console.log(`
 🎓 Akash Deep - PhD Mathematical Finance
 📧 akash404deep@gmail.com
 🔗 https://linkedin.com/in/akashdeepo
-⚡ Built with modern web technologies
+⚡ Built with Monte Carlo simulations
 `);
 
 // Export functions for testing (if in module environment)
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = {
-        initializeParticles,
+        initializeMonteCarloBackground,
         initializeNavigation,
-        initializeAnimations
+        initializeAnimations,
+        initializeThemeSwitcher
     };
 }

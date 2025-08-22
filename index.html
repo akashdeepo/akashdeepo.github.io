@@ -41,7 +41,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer">
     
     <!-- Scripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js" defer></script>
+    <script src="monte-carlo-background.js"></script>
     
     <!-- Schema.org structured data -->
     <script type="application/ld+json">
@@ -54,15 +54,8 @@
         "@type": "Organization",
         "name": "Texas Tech University"
       },
-      "url": "https://akashdeep.dev",
+      "url": "https://akashdeepo.github.io",
       "email": "akash404deep@gmail.com",
-      "telephone": "+1-806-535-9027",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Lubbock",
-        "addressRegion": "TX",
-        "addressCountry": "US"
-      },
       "sameAs": [
         "https://linkedin.com/in/akashdeepo",
         "https://github.com/akashdeepo",
@@ -72,47 +65,21 @@
     }
     </script>
 </head>
-<body data-theme="dark">
+<body data-theme="light">
     <!-- Skip to content link for accessibility -->
     <a href="#home" class="skip-link">Skip to main content</a>
-    
-    <!-- Background Music (Hidden Audio Element) -->
-    <!-- Audio removed due to licensing/availability issues - can be added back with proper licensed music -->
     
     <!-- Custom Cursor -->
     <div class="custom-cursor"></div>
     
-    <!-- Animated Background -->
-    <div class="animated-bg">
-        <div class="floating-shapes">
-            <div class="shape"></div>
-            <div class="shape"></div>
-            <div class="shape"></div>
-            <div class="shape"></div>
-            <div class="shape"></div>
-        </div>
-    </div>
-    
-    <!-- Theme Switcher -->
-    <div class="theme-switcher">
-        <div class="theme-btn dark active" data-theme="dark" title="Dark Theme">
-            <i class="fas fa-moon"></i>
-        </div>
-        <div class="theme-btn light" data-theme="light" title="Light Theme">
-            <i class="fas fa-sun"></i>
-        </div>
-    </div>
-    
-    <!-- Floating Action Buttons -->
-    <div class="floating-actions" style="display: none;">
-        <button class="fab music-toggle" aria-label="Toggle background music" aria-pressed="false">
-            <i class="fas fa-music" aria-hidden="true"></i>
-        </button>
+    <!-- Monte Carlo Background -->
+    <div class="monte-carlo-container">
+        <canvas id="monte-carlo-canvas"></canvas>
     </div>
     
     <!-- Navigation -->
     <nav class="navbar">
-        <div class="nav-container">
+        <div class="nav-container container">
             <a href="#home" class="nav-brand">AD</a>
             <ul class="nav-menu">
                 <li><a href="#home" class="nav-link">Home</a></li>
@@ -123,6 +90,12 @@
                 <li><a href="#achievements" class="nav-link">Achievements</a></li>
                 <li><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
+            <div class="theme-toggle">
+                <button class="theme-toggle-btn" aria-label="Toggle dark mode" aria-pressed="false">
+                    <i class="fas fa-moon" aria-hidden="true"></i>
+                    <span class="fallback-text" style="display: none;">🌙</span>
+                </button>
+            </div>
             <div class="hamburger">
                 <span></span>
                 <span></span>
@@ -133,7 +106,6 @@
 
     <!-- Hero Section -->
     <section id="home" class="hero">
-        <div id="particles-js"></div>
         <div class="hero-content">
             <div class="hero-text">
                 <h1 class="hero-title">
@@ -146,15 +118,15 @@
                     Presidential Scholar | 5 Publications | Conference Presenter
                 </p>
                 <div class="hero-stats">
-                    <div class="stat" data-aos="fade-up" data-aos-delay="600">
+                    <div class="stat">
                         <span class="stat-number">5</span>
                         <span class="stat-label">Publications</span>
                     </div>
-                    <div class="stat" data-aos="fade-up" data-aos-delay="800">
+                    <div class="stat">
                         <span class="stat-number">19</span>
                         <span class="stat-label">Citations</span>
                     </div>
-                    <div class="stat" data-aos="fade-up" data-aos-delay="1000">
+                    <div class="stat">
                         <span class="stat-number">2</span>
                         <span class="stat-label">Kaggle Medals</span>
                     </div>
@@ -182,23 +154,29 @@
                     <p class="about-description">
                         I'm a PhD student in Mathematical Finance at Texas Tech University, specializing in quantitative research, 
                         trading algorithms, and risk assessment. My work focuses on applying machine learning, stochastic processes, 
-                        and statistical models to optimize trading strategies and develop AI-powered financial advisory systems.
+                        and statistical models to optimize trading strategies and develop AI-powered financial analyst systems.
                     </p>
                     <div class="about-highlights">
-                        <div class="highlight interactive-card" data-aos="flip-left" data-aos-delay="200">
-                            <i class="fas fa-graduation-cap animated-icon"></i>
-                            <h3>Academic Excellence</h3>
-                            <p>PhD in Mathematical Finance with focus on stochastic processes and quantitative modeling</p>
+                        <div class="highlight card">
+                            <i class="fas fa-graduation-cap"></i>
+                            <div>
+                                <h3>Academic Excellence</h3>
+                                <p>PhD in Mathematical Finance with focus on stochastic processes and quantitative modeling</p>
+                            </div>
                         </div>
-                        <div class="highlight interactive-card" data-aos="flip-left" data-aos-delay="400">
-                            <i class="fas fa-chart-line animated-icon"></i>
-                            <h3>Research Impact</h3>
-                            <p>Published in leading journals with focus on machine learning in financial markets</p>
+                        <div class="highlight card">
+                            <i class="fas fa-chart-line"></i>
+                            <div>
+                                <h3>Research Impact</h3>
+                                <p>Published in leading journals with focus on machine learning in financial markets</p>
+                            </div>
                         </div>
-                        <div class="highlight interactive-card" data-aos="flip-left" data-aos-delay="600">
-                            <i class="fas fa-rocket animated-icon"></i>
-                            <h3>Innovation</h3>
-                            <p>Co-founder of DeepAI Finance LLC, developing AI-powered financial advisory systems</p>
+                        <div class="highlight card">
+                            <i class="fas fa-rocket"></i>
+                            <div>
+                                <h3>Innovation</h3>
+                                <p>Co-founder of DeepAI Finance LLC, developing AI-powered financial analyst systems</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -206,26 +184,23 @@
                     <h3>Education Timeline</h3>
                     <div class="timeline">
                         <div class="timeline-item">
-                            <div class="timeline-marker"></div>
+                            <div class="timeline-date">2024 - 2028</div>
                             <div class="timeline-content">
                                 <h4>PhD in Mathematical Finance</h4>
-                                <span class="timeline-date">2024 - 2028</span>
                                 <p>Texas Tech University</p>
                             </div>
                         </div>
                         <div class="timeline-item">
-                            <div class="timeline-marker"></div>
+                            <div class="timeline-date">2022 - 2023</div>
                             <div class="timeline-content">
                                 <h4>MS in Interdisciplinary Studies</h4>
-                                <span class="timeline-date">2022 - 2023</span>
                                 <p>Mathematical Finance and Quantum Physics Portfolio</p>
                             </div>
                         </div>
                         <div class="timeline-item">
-                            <div class="timeline-marker"></div>
+                            <div class="timeline-date">2018 - 2022</div>
                             <div class="timeline-content">
                                 <h4>BS in Applied Physics</h4>
-                                <span class="timeline-date">2018 - 2022</span>
                                 <p>Mathematics Minor, Texas Tech University</p>
                             </div>
                         </div>
@@ -243,7 +218,7 @@
                 <p class="section-subtitle">Working under Dr. Svetlozar Rachev (21,000+ citations) on machine learning applications in mathematical finance</p>
             </div>
             <div class="research-grid">
-                <div class="research-card featured interactive-card" data-aos="zoom-in" data-aos-delay="100">
+                <div class="research-card featured card">
                     <div class="research-header">
                         <span class="research-status submitted">Submitted 2025</span>
                         <h3>Binary Tree Option Pricing Under Market Microstructure Effects</h3>
@@ -257,7 +232,7 @@
                     </div>
                 </div>
 
-                <div class="research-card published interactive-card" data-aos="zoom-in" data-aos-delay="200">
+                <div class="research-card published card">
                     <div class="research-header">
                         <span class="research-status published">Published March 2025</span>
                         <h3>Risk-Adjusted Performance of Random Forest Models in High-Frequency Trading</h3>
@@ -271,7 +246,7 @@
                     </div>
                 </div>
 
-                <div class="research-card published">
+                <div class="research-card published card">
                     <div class="research-header">
                         <span class="research-status published">Published May 2024</span>
                         <h3>Advanced Financial Market Forecasting: Integrating Monte Carlo Simulations with Ensemble ML Models</h3>
@@ -280,34 +255,6 @@
                     <div class="research-content">
                         <p>Developed a hybrid model combining Monte Carlo simulations with ML models (Random Forest, LSTM, SVM), improving SPY ETF and major stock predictions by 18% through dynamic risk-adjusted analysis.</p>
                         <a href="https://www.aimspress.com/article/10.3934/QFE.2024011" class="research-link" target="_blank">
-                            <i class="fas fa-external-link-alt"></i> View Publication
-                        </a>
-                    </div>
-                </div>
-
-                <div class="research-card published">
-                    <div class="research-header">
-                        <span class="research-status published">Published Aug 2023</span>
-                        <h3>Reinforcement Learning in Financial Markets</h3>
-                        <p class="research-journal">International Journal of Computer Science and Telecommunications</p>
-                    </div>
-                    <div class="research-content">
-                        <p>Pioneered an adaptive reinforcement learning framework for model weight optimization using Advantage Actor-Critic (A2C) algorithms, improving predictive performance by 14% for volatile financial markets.</p>
-                        <a href="https://www.ijcst.org/Volume14/Issue3/p1_14_3.pdf" class="research-link" target="_blank">
-                            <i class="fas fa-external-link-alt"></i> View Publication
-                        </a>
-                    </div>
-                </div>
-
-                <div class="research-card published">
-                    <div class="research-header">
-                        <span class="research-status published">Published Feb 2023</span>
-                        <h3>A Multifactor Analysis Model for Stock Market Prediction</h3>
-                        <p class="research-journal">International Journal of Computer Science and Telecommunications</p>
-                    </div>
-                    <div class="research-content">
-                        <p>Engineered a multifactor model combining Random Forest, LSTM, and sentiment analysis, achieving 15% improvement in stock prediction accuracy for high-volatility stocks.</p>
-                        <a href="https://www.ijcst.org/Volume14/Issue1/p1_14_1.pdf" class="research-link" target="_blank">
                             <i class="fas fa-external-link-alt"></i> View Publication
                         </a>
                     </div>
@@ -339,27 +286,17 @@
                     </div>
                 </div>
 
-                <div class="experience-item featured">
+                <div class="timeline-item featured">
                     <div class="timeline-date">2022 - Present</div>
                     <div class="timeline-content">
                         <h3>Co-Founder & Lead Researcher</h3>
                         <h4>DeepAI Finance LLC</h4>
-                        <div class="company-link">
-                            <a href="https://deepaifinance.com/" target="_blank">
-                                <i class="fas fa-external-link-alt"></i> deepaifinance.com
-                            </a>
-                        </div>
                         <ul>
-                            <li>Developing AI-powered financial advisory platform using advanced ML models and fine-tuned LLMs</li>
+                            <li>Developing AI-powered financial analyst platform using advanced ML models and fine-tuned LLMs</li>
                             <li>Applied quantitative research to personal portfolio management and systematic investment strategies</li>
                             <li>Building full-stack financial analysis tools with React, FastAPI, and Python-based quantitative models</li>
                             <li>Bridging academic research and practical applications in algorithmic trading systems</li>
                         </ul>
-                        <div class="experience-highlight">
-                            <a href="https://app.deepaifinance.com/" class="app-link" target="_blank">
-                                <i class="fas fa-rocket"></i> Try Our AI Financial Advisor
-                            </a>
-                        </div>
                     </div>
                 </div>
 
@@ -376,18 +313,6 @@
                         </ul>
                     </div>
                 </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-date">2021 - 2022</div>
-                    <div class="timeline-content">
-                        <h3>Undergraduate Research Assistant</h3>
-                        <h4>Department of Physics, Texas Tech University</h4>
-                        <ul>
-                            <li>Conducted research on material properties: heat capacity, magnetic susceptibility, electrical resistivity</li>
-                            <li>Contributing to advancements in quantum material analysis</li>
-                        </ul>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
@@ -400,43 +325,18 @@
                 <p class="section-subtitle">Expertise spanning quantitative finance, machine learning, and full-stack development</p>
             </div>
             <div class="skills-grid grid grid-3">
-                <div class="skill-category">
+                <div class="skill-category card">
                     <h3><i class="fas fa-code"></i> Programming Languages</h3>
-                    <div class="skill-list">
-                        <div class="skill-item">
-                            <span class="skill-name">Python</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-width="95"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">MATLAB</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-width="90"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">JavaScript</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-width="85"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">R</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-width="80"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">C++</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-width="75"></div>
-                            </div>
-                        </div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">MATLAB</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">R</span>
+                        <span class="skill-tag">C++</span>
                     </div>
                 </div>
 
-                <div class="skill-category">
+                <div class="skill-category card">
                     <h3><i class="fas fa-brain"></i> ML Frameworks</h3>
                     <div class="skill-tags">
                         <span class="skill-tag">PyTorch</span>
@@ -448,7 +348,7 @@
                     </div>
                 </div>
 
-                <div class="skill-category">
+                <div class="skill-category card">
                     <h3><i class="fas fa-chart-line"></i> Financial Tools</h3>
                     <div class="skill-tags">
                         <span class="skill-tag">QuantLib</span>
@@ -460,19 +360,7 @@
                     </div>
                 </div>
 
-                <div class="skill-category">
-                    <h3><i class="fas fa-globe"></i> Web Development</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">React</span>
-                        <span class="skill-tag">FastAPI</span>
-                        <span class="skill-tag">Flask</span>
-                        <span class="skill-tag">REST APIs</span>
-                        <span class="skill-tag">Docker</span>
-                        <span class="skill-tag">AWS</span>
-                    </div>
-                </div>
-
-                <div class="skill-category">
+                <div class="skill-category card">
                     <h3><i class="fas fa-calculator"></i> Quantitative Methods</h3>
                     <div class="skill-tags">
                         <span class="skill-tag">Time Series Analysis</span>
@@ -484,7 +372,7 @@
                     </div>
                 </div>
 
-                <div class="skill-category">
+                <div class="skill-category card">
                     <h3><i class="fas fa-robot"></i> ML Algorithms</h3>
                     <div class="skill-tags">
                         <span class="skill-tag">LSTM Networks</span>
@@ -493,6 +381,18 @@
                         <span class="skill-tag">SVMs</span>
                         <span class="skill-tag">Reinforcement Learning</span>
                         <span class="skill-tag">Transformers</span>
+                    </div>
+                </div>
+
+                <div class="skill-category card">
+                    <h3><i class="fas fa-globe"></i> Web Development</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">React</span>
+                        <span class="skill-tag">FastAPI</span>
+                        <span class="skill-tag">Flask</span>
+                        <span class="skill-tag">REST APIs</span>
+                        <span class="skill-tag">Docker</span>
+                        <span class="skill-tag">AWS</span>
                     </div>
                 </div>
             </div>
@@ -507,68 +407,114 @@
                 <p class="section-subtitle">Demonstrating excellence in competitive machine learning and research</p>
             </div>
             <div class="achievements-grid grid grid-2">
-                <div class="achievement-card highlight">
-                    <div class="achievement-icon">
-                        <i class="fab fa-kaggle"></i>
-                    </div>
-                    <div class="achievement-content">
-                        <h3>Kaggle Competitions Expert</h3>
-                        <div class="achievement-stats">
-                            <div class="stat">
-                                <span class="stat-number">2</span>
-                                <span class="stat-label">Bronze Medals</span>
+                <!-- Row 1: Competition Excellence -->
+                <div class="achievement-row">
+                    <div class="achievement-card highlight card">
+                        <div class="achievement-icon kaggle">
+                            <i class="fab fa-kaggle"></i>
+                        </div>
+                        <div class="achievement-content">
+                            <h3>Kaggle Expert</h3>
+                            <div class="achievement-stats">
+                                <div class="stat-highlight">
+                                    <span class="stat-number">2</span>
+                                    <span class="stat-label">Bronze Medals</span>
+                                </div>
                             </div>
-                            <div class="stat">
-                                <span class="stat-number">96/701</span>
-                                <span class="stat-label">NeurIPS 2024</span>
-                            </div>
-                            <div class="stat">
-                                <span class="stat-number">326/3757</span>
-                                <span class="stat-label">Jane Street</span>
+                            <div class="achievement-details">
+                                <div class="detail-item">
+                                    <span class="rank">96/701</span>
+                                    <span class="competition">NeurIPS 2024 - Lux AI</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="rank">326/3757</span>
+                                    <span class="competition">Jane Street Forecasting</span>
+                                </div>
                             </div>
                         </div>
-                        <p><strong>NeurIPS 2024 - Lux AI Season 3:</strong> Deep space exploration simulation (96/701 teams)<br>
-                        <strong>Jane Street Real-Time Market Data Forecasting:</strong> Financial market prediction using real-world data (326/3757 teams)</p>
+                    </div>
+
+                    <div class="achievement-card highlight card">
+                        <div class="achievement-icon academic">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div class="achievement-content">
+                            <h3>Academic Excellence</h3>
+                            <div class="achievement-stats">
+                                <div class="stat-highlight">
+                                    <span class="stat-number">Full</span>
+                                    <span class="stat-label">PhD Funding</span>
+                                </div>
+                            </div>
+                            <div class="achievement-details">
+                                <div class="detail-item">
+                                    <span class="rank">Presidential</span>
+                                    <span class="competition">Scholar Award</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="rank">Dean's List</span>
+                                    <span class="competition">Multiple Semesters</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="achievement-card">
-                    <div class="achievement-icon">
-                        <i class="fas fa-graduation-cap"></i>
+                <!-- Row 2: Research Impact -->
+                <div class="achievement-row">
+                    <div class="achievement-card card">
+                        <div class="achievement-icon research">
+                            <i class="fas fa-microscope"></i>
+                        </div>
+                        <div class="achievement-content">
+                            <h3>Research Impact</h3>
+                            <div class="achievement-stats">
+                                <div class="stat-grid">
+                                    <div class="stat-item">
+                                        <span class="stat-number">5</span>
+                                        <span class="stat-label">Publications</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-number">19</span>
+                                        <span class="stat-label">Citations</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-number">3</span>
+                                        <span class="stat-label">H-Index</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="research-note">Co-authored with established leaders: Rachev, Fabozzi</p>
+                        </div>
                     </div>
-                    <div class="achievement-content">
-                        <h3>Academic Honors</h3>
-                        <p><strong>TTU Presidential Scholarship:</strong> Merit-based full funding for doctoral studies<br>
-                        <strong>President's List & Dean's List:</strong> Multiple semester recognition for academic excellence<br>
-                        <strong>Conference Presenter:</strong> 1st International Conference on Risk & Financial Management</p>
-                    </div>
-                </div>
 
-                <div class="achievement-card">
-                    <div class="achievement-icon">
-                        <i class="fas fa-trophy"></i>
-                    </div>
-                    <div class="achievement-content">
-                        <h3>Research Impact</h3>
-                        <p><strong>5 Publications:</strong> Peer-reviewed papers in top-tier journals including Journal of Risk and Financial Management<br>
-                        <strong>19 Citations:</strong> Google Scholar metrics with h-index of 3<br>
-                        <strong>Co-authors:</strong> Collaborative research with established leaders (Rachev, Fabozzi)</p>
-                    </div>
-                </div>
-
-                <div class="achievement-card">
-                    <div class="achievement-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <div class="achievement-content">
-                        <h3>Applied Research</h3>
-                        <p><strong>Quantitative Portfolio Management:</strong> Applied academic research to personal investment strategies<br>
-                        <strong>Systematic Approaches:</strong> Implementing machine learning models for market analysis<br>
-                        <strong>Research-to-Application:</strong> Bridging academic theory with practical financial applications</p>
+                    <div class="achievement-card card">
+                        <div class="achievement-icon application">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <div class="achievement-content">
+                            <h3>Applied Innovation</h3>
+                            <div class="achievement-stats">
+                                <div class="stat-grid">
+                                    <div class="stat-item">
+                                        <span class="stat-number">ML</span>
+                                        <span class="stat-label">Models</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-number">Quant</span>
+                                        <span class="stat-label">Portfolio</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-number">Real</span>
+                                        <span class="stat-label">Markets</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="research-note">Bridging academic theory with practical applications</p>
+                        </div>
                     </div>
                 </div>
             </div>
-
         </div>
     </section>
 
@@ -582,7 +528,7 @@
             <div class="contact-grid">
                 <div class="contact-info">
                     <div class="contact-item">
-                        <i class="fas fa-envelope" style="color: #ea4335;"></i>
+                        <i class="fas fa-envelope"></i>
                         <div class="contact-details">
                             <h3>Email</h3>
                             <a href="mailto:akash404deep@gmail.com">akash404deep@gmail.com</a>
@@ -591,19 +537,19 @@
                 </div>
                 <div class="social-links">
                     <a href="https://linkedin.com/in/akashdeepo" target="_blank" class="social-link">
-                        <i class="fab fa-linkedin" style="color: #0077b5;"></i>
+                        <i class="fab fa-linkedin"></i>
                         <span>LinkedIn</span>
                     </a>
                     <a href="https://github.com/akashdeepo" target="_blank" class="social-link">
-                        <i class="fab fa-github" style="color: #333;"></i>
+                        <i class="fab fa-github"></i>
                         <span>GitHub</span>
                     </a>
                     <a href="https://www.kaggle.com/akashdeepo" target="_blank" class="social-link">
-                        <i class="fab fa-kaggle" style="color: #20beff;"></i>
+                        <i class="fab fa-kaggle"></i>
                         <span>Kaggle</span>
                     </a>
                     <a href="https://leetcode.com/u/akashdeepo/" target="_blank" class="social-link">
-                        <i class="fas fa-code" style="color: #ffa116;"></i>
+                        <i class="fas fa-code"></i>
                         <span>LeetCode</span>
                     </a>
                 </div>
@@ -618,6 +564,6 @@
         </div>
     </footer>
 
-    <script src="script-new.js"></script>
+    <script src="script-test.js" defer></script>
 </body>
 </html>
