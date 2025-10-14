@@ -20,7 +20,10 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Initialize Monte Carlo background
         initializeMonteCarloBackground();
-        
+
+        // Initialize Monte Carlo badge toggle
+        initializeMCBadgeToggle();
+
         // Optional features (only on non-mobile devices)
         if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches && 
             window.matchMedia('(hover: hover)').matches) {
@@ -188,13 +191,46 @@ function initializeThemeSwitcher() {
 function initializeMonteCarloBackground() {
     const canvas = document.getElementById('monte-carlo-canvas');
     if (!canvas) return;
-    
+
     try {
         monteCarloInstance = new MonteCarloBackground('monte-carlo-canvas');
     } catch (error) {
         console.error('Failed to initialize Monte Carlo background:', error);
         // Fallback to regular background
         canvas.style.display = 'none';
+    }
+}
+
+// -----------------------------------------------------------------------------
+// MONTE CARLO BADGE TOGGLE
+// -----------------------------------------------------------------------------
+function initializeMCBadgeToggle() {
+    const badge = document.querySelector('.mc-info-badge');
+    if (!badge) return;
+
+    // Toggle expanded state on click
+    badge.addEventListener('click', function(e) {
+        // Don't toggle if clicking on content when expanded
+        if (this.classList.contains('expanded') && e.target !== this && e.target !== this.querySelector('.mc-badge-icon')) {
+            return;
+        }
+
+        this.classList.toggle('expanded');
+    });
+
+    // Close when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!badge.contains(e.target) && badge.classList.contains('expanded')) {
+            badge.classList.remove('expanded');
+        }
+    });
+
+    // Prevent closing when clicking inside the badge content
+    const badgeContent = badge.querySelector('.mc-badge-content');
+    if (badgeContent) {
+        badgeContent.addEventListener('click', function(e) {
+            e.stopPropagation();
+        });
     }
 }
 
