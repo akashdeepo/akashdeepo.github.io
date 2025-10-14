@@ -235,25 +235,54 @@ strong {
     justify-content: center;
     width: 40px;
     height: 40px;
-    border: 1px solid var(--border);
+    border: 1px solid rgba(255, 255, 255, 0.3);
     border-radius: 8px;
-    background: transparent;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px) saturate(180%);
+    -webkit-backdrop-filter: blur(10px) saturate(180%);
     color: var(--text-primary);
     cursor: pointer;
     transition: all 0.2s ease;
     font-size: 1rem;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(31, 38, 135, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.theme-toggle-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    background: linear-gradient(180deg,
+                rgba(255, 255, 255, 0.2) 0%,
+                rgba(255, 255, 255, 0) 100%);
+    pointer-events: none;
 }
 
 .theme-toggle-btn:hover {
-    background: var(--accent-primary);
+    background: linear-gradient(135deg,
+                rgba(218, 119, 86, 0.9) 0%,
+                rgba(189, 93, 58, 0.9) 100%);
     color: white;
-    border-color: var(--accent-primary);
-    box-shadow: 0 4px 16px var(--shadow-hover);
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 24px rgba(218, 119, 86, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
     transform: translateY(-2px);
 }
 
 .theme-toggle-btn i {
     font-size: 1.2rem;
+    position: relative;
+    z-index: 1;
+}
+
+[data-theme="dark"] .theme-toggle-btn {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.2);
 }
 
 /* Fallback for when Font Awesome doesn't load */
@@ -355,16 +384,42 @@ strong {
     position: fixed;
     top: 0;
     width: 100%;
-    background: rgba(238, 236, 226, 0.95);
-    backdrop-filter: blur(10px);
+    background: rgba(238, 236, 226, 0.7);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
     z-index: 1000;
     transition: var(--transition);
-    border-bottom: 1px solid var(--border);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.8);
     height: 4rem;
+    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.navbar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg,
+                rgba(255, 255, 255, 0.2) 0%,
+                rgba(255, 255, 255, 0) 50%);
+    pointer-events: none;
+    opacity: 0.6;
 }
 
 [data-theme="dark"] .navbar {
-    background: rgba(26, 24, 16, 0.95);
+    background: rgba(26, 24, 16, 0.7);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .navbar::after {
+    background: linear-gradient(180deg,
+                rgba(255, 255, 255, 0.05) 0%,
+                rgba(255, 255, 255, 0) 50%);
 }
 
 .nav-container {
@@ -544,29 +599,76 @@ strong {
     cursor: pointer;
     transition: var(--transition);
     text-decoration: none;
+    position: relative;
+    overflow: hidden;
 }
 
 .btn-primary {
-    background: var(--accent-primary);
+    background: linear-gradient(135deg,
+                rgba(218, 119, 86, 0.9) 0%,
+                rgba(189, 93, 58, 0.9) 100%);
     color: white;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 32px rgba(218, 119, 86, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    background: linear-gradient(180deg,
+                rgba(255, 255, 255, 0.3) 0%,
+                rgba(255, 255, 255, 0) 100%);
+    pointer-events: none;
 }
 
 .btn-primary:hover {
-    background: var(--accent-secondary);
+    background: linear-gradient(135deg,
+                rgba(218, 119, 86, 1) 0%,
+                rgba(189, 93, 58, 1) 100%);
     transform: translateY(-0.125rem);
-    box-shadow: 0 0.5rem 1rem var(--shadow-hover);
+    box-shadow: 0 12px 40px rgba(218, 119, 86, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.4);
 }
 
 .btn-secondary {
-    background: transparent;
+    background: rgba(255, 255, 255, 0.1);
     color: var(--accent-primary);
-    border: 2px solid var(--accent-primary);
+    border: 2px solid rgba(218, 119, 86, 0.5);
+    backdrop-filter: blur(10px) saturate(180%);
+    -webkit-backdrop-filter: blur(10px) saturate(180%);
+    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.btn-secondary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    background: linear-gradient(180deg,
+                rgba(255, 255, 255, 0.15) 0%,
+                rgba(255, 255, 255, 0) 100%);
+    pointer-events: none;
 }
 
 .btn-secondary:hover {
-    background: var(--accent-primary);
+    background: linear-gradient(135deg,
+                rgba(218, 119, 86, 0.9) 0%,
+                rgba(189, 93, 58, 0.9) 100%);
     color: white;
+    border-color: rgba(255, 255, 255, 0.3);
     transform: translateY(-0.125rem);
+    box-shadow: 0 12px 40px rgba(218, 119, 86, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
 
 /* -----------------------------------------------------------------------------
