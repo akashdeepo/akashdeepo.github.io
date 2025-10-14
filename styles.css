@@ -324,20 +324,28 @@ strong {
     position: fixed;
     bottom: 2rem;
     right: 2rem;
-    max-width: 320px;
+    max-width: 64px;
     background: rgba(255, 255, 255, 0.12);
     backdrop-filter: blur(30px) saturate(200%);
     -webkit-backdrop-filter: blur(30px) saturate(200%);
     border: 2px solid rgba(255, 255, 255, 0.4);
     border-radius: 1rem;
-    padding: 1.25rem;
+    padding: 0;
     box-shadow: 0 12px 48px rgba(31, 38, 135, 0.2),
                 inset 0 2px 0 rgba(255, 255, 255, 0.6),
                 inset 0 -2px 0 rgba(218, 119, 86, 0.15);
     z-index: 9999;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     animation: fadeInUp 1s ease-out 1.5s both;
     pointer-events: auto;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.mc-info-badge.expanded {
+    max-width: 320px;
+    padding: 1.25rem;
+    cursor: default;
 }
 
 .mc-info-badge::before {
@@ -352,34 +360,55 @@ strong {
                 rgba(255, 255, 255, 0) 100%);
     border-radius: 1rem 1rem 0 0;
     pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
-.mc-info-badge:hover {
-    transform: translateY(-8px) scale(1.02);
-    box-shadow: 0 20px 60px rgba(31, 38, 135, 0.3),
+.mc-info-badge.expanded::before {
+    opacity: 1;
+}
+
+.mc-info-badge:hover:not(.expanded) {
+    transform: scale(1.1);
+    box-shadow: 0 16px 56px rgba(31, 38, 135, 0.3),
                 inset 0 2px 0 rgba(255, 255, 255, 0.7),
                 inset 0 -2px 0 rgba(218, 119, 86, 0.2);
     border-color: rgba(255, 255, 255, 0.6);
 }
 
+.mc-info-badge.expanded:hover {
+    transform: translateY(-4px);
+}
+
 .mc-badge-icon {
-    position: absolute;
-    top: -16px;
-    left: 1.25rem;
-    width: 48px;
-    height: 48px;
+    position: relative;
+    width: 64px;
+    height: 64px;
     background: linear-gradient(135deg,
                 rgba(218, 119, 86, 0.9) 0%,
                 rgba(189, 93, 58, 0.9) 100%);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border: 2px solid rgba(255, 255, 255, 0.6);
-    border-radius: 12px;
+    border-radius: 1rem;
     display: flex;
     align-items: center;
     justify-content: center;
     color: white;
+    font-size: 1.5rem;
+    box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.5);
+    flex-shrink: 0;
+    transition: all 0.3s ease;
+}
+
+.mc-info-badge.expanded .mc-badge-icon {
+    width: 48px;
+    height: 48px;
     font-size: 1.25rem;
+    border-radius: 12px;
+    position: absolute;
+    top: -16px;
+    left: 1.25rem;
+    border: 2px solid rgba(255, 255, 255, 0.6);
     box-shadow: 0 8px 24px rgba(218, 119, 86, 0.4),
                 inset 0 2px 0 rgba(255, 255, 255, 0.5);
 }
@@ -388,6 +417,15 @@ strong {
     position: relative;
     z-index: 1;
     margin-top: 0.5rem;
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: opacity 0.3s ease, max-height 0.5s ease;
+}
+
+.mc-info-badge.expanded .mc-badge-content {
+    opacity: 1;
+    max-height: 300px;
 }
 
 .mc-badge-content h4 {
