@@ -75,17 +75,19 @@
     <!-- Monte Carlo Background -->
     <div class="monte-carlo-container">
         <canvas id="monte-carlo-canvas"></canvas>
-        <div class="mc-info-badge">
-            <div class="mc-badge-icon">
-                <i class="fas fa-chart-line"></i>
-            </div>
-            <div class="mc-badge-content">
-                <h4>Live Monte Carlo Simulation</h4>
-                <p>Real-time Geometric Brownian Motion paths</p>
-                <div class="mc-interactions">
-                    <span><i class="fas fa-mouse"></i> Move to influence drift</span>
-                    <span><i class="fas fa-hand-pointer"></i> Click to spawn paths</span>
-                </div>
+    </div>
+
+    <!-- Monte Carlo Info Badge (outside container for proper z-index) -->
+    <div class="mc-info-badge">
+        <div class="mc-badge-icon">
+            <i class="fas fa-chart-line"></i>
+        </div>
+        <div class="mc-badge-content">
+            <h4>Live Monte Carlo Simulation</h4>
+            <p>Real-time Geometric Brownian Motion paths</p>
+            <div class="mc-interactions">
+                <span><i class="fas fa-mouse"></i> Move to influence drift</span>
+                <span><i class="fas fa-hand-pointer"></i> Click to spawn paths</span>
             </div>
         </div>
     </div>
@@ -467,118 +469,78 @@
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">Achievements & Recognition</h2>
-                <p class="section-subtitle">Demonstrating excellence in competitive machine learning and research</p>
+                <p class="section-subtitle">Excellence in competitive machine learning and quantitative research</p>
             </div>
-            <div class="achievements-grid grid grid-2">
-                <!-- Row 1: Competition Excellence -->
-                <div class="achievement-row">
-                    <div class="achievement-card highlight card">
-                        <div class="achievement-icon kaggle">
-                            <i class="fab fa-kaggle"></i>
-                        </div>
-                        <div class="achievement-content">
-                            <h3>Kaggle Competitions Expert</h3>
-                            <div class="achievement-stats">
-                                <div class="stat-highlight">
-                                    <span class="stat-number">3</span>
-                                    <span class="stat-label">Total Medals</span>
-                                </div>
-                            </div>
-                            <div class="achievement-details">
-                                <div class="detail-item">
-                                    <span class="rank">Rank 1,237</span>
-                                    <span class="competition">Top 1% of 201,885 competitors</span>
-                                </div>
-                                <div class="detail-item">
-                                    <span class="rank">1 Gold, 2 Bronze</span>
-                                    <span class="competition">Competition Medals</span>
-                                </div>
-                                <div class="detail-item">
-                                    <span class="rank">Highest: 1,205</span>
-                                    <span class="competition">Best Competition Rank</span>
-                                </div>
-                            </div>
-                        </div>
+            <div class="achievements-grid">
+                <div class="achievement-card highlight card">
+                    <div class="achievement-icon kaggle">
+                        <i class="fab fa-kaggle"></i>
                     </div>
-
-                    <div class="achievement-card highlight card">
-                        <div class="achievement-icon academic">
-                            <i class="fas fa-graduation-cap"></i>
+                    <div class="achievement-content">
+                        <h3>Kaggle Competitions Expert</h3>
+                        <div class="achievement-metric">
+                            <span class="metric-value">Top 1%</span>
+                            <span class="metric-label">Rank 1,237 of 201,885</span>
                         </div>
-                        <div class="achievement-content">
-                            <h3>Academic Excellence</h3>
-                            <div class="achievement-stats">
-                                <div class="stat-highlight">
-                                    <span class="stat-number">Full</span>
-                                    <span class="stat-label">PhD Funding</span>
-                                </div>
-                            </div>
-                            <div class="achievement-details">
-                                <div class="detail-item">
-                                    <span class="rank">Presidential</span>
-                                    <span class="competition">Scholar Award</span>
-                                </div>
-                                <div class="detail-item">
-                                    <span class="rank">Dean's List</span>
-                                    <span class="competition">Multiple Semesters</span>
-                                </div>
-                            </div>
+                        <div class="achievement-badges">
+                            <span class="badge gold"><i class="fas fa-medal"></i> 1 Gold</span>
+                            <span class="badge bronze"><i class="fas fa-medal"></i> 2 Bronze</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- Row 2: Research Impact -->
-                <div class="achievement-row">
-                    <div class="achievement-card card">
-                        <div class="achievement-icon research">
-                            <i class="fas fa-microscope"></i>
+                <div class="achievement-card highlight card">
+                    <div class="achievement-icon academic">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="achievement-content">
+                        <h3>Academic Excellence</h3>
+                        <div class="achievement-metric">
+                            <span class="metric-value">Full Funding</span>
+                            <span class="metric-label">Presidential Scholar</span>
                         </div>
-                        <div class="achievement-content">
-                            <h3>Research Impact</h3>
-                            <div class="achievement-stats">
-                                <div class="stat-grid">
-                                    <div class="stat-item">
-                                        <span class="stat-number">8</span>
-                                        <span class="stat-label">Publications</span>
-                                    </div>
-                                    <div class="stat-item">
-                                        <span class="stat-number">25</span>
-                                        <span class="stat-label">Citations</span>
-                                    </div>
-                                    <div class="stat-item">
-                                        <span class="stat-number">4</span>
-                                        <span class="stat-label">H-Index</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <p class="research-note">Co-authored with established leaders: Rachev, Fabozzi</p>
+                        <div class="achievement-badges">
+                            <span class="badge scholar"><i class="fas fa-award"></i> Scholar Award</span>
+                            <span class="badge list"><i class="fas fa-star"></i> Dean's List</span>
                         </div>
                     </div>
+                </div>
 
-                    <div class="achievement-card card">
-                        <div class="achievement-icon application">
-                            <i class="fas fa-rocket"></i>
-                        </div>
-                        <div class="achievement-content">
-                            <h3>Applied Innovation</h3>
-                            <div class="achievement-stats">
-                                <div class="stat-grid">
-                                    <div class="stat-item">
-                                        <span class="stat-number">ML</span>
-                                        <span class="stat-label">Models</span>
-                                    </div>
-                                    <div class="stat-item">
-                                        <span class="stat-number">Quant</span>
-                                        <span class="stat-label">Portfolio</span>
-                                    </div>
-                                    <div class="stat-item">
-                                        <span class="stat-number">Real</span>
-                                        <span class="stat-label">Markets</span>
-                                    </div>
-                                </div>
+                <div class="achievement-card card">
+                    <div class="achievement-icon research">
+                        <i class="fas fa-microscope"></i>
+                    </div>
+                    <div class="achievement-content">
+                        <h3>Research Impact</h3>
+                        <div class="achievement-stats-row">
+                            <div class="stat-box">
+                                <span class="stat-value">8</span>
+                                <span class="stat-name">Publications</span>
                             </div>
-                            <p class="research-note">Bridging academic theory with practical applications</p>
+                            <div class="stat-box">
+                                <span class="stat-value">25</span>
+                                <span class="stat-name">Citations</span>
+                            </div>
+                            <div class="stat-box">
+                                <span class="stat-value">4</span>
+                                <span class="stat-name">H-Index</span>
+                            </div>
                         </div>
+                        <p class="achievement-note">Co-authored with Rachev, Fabozzi</p>
+                    </div>
+                </div>
+
+                <div class="achievement-card card">
+                    <div class="achievement-icon application">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <div class="achievement-content">
+                        <h3>Applied Innovation</h3>
+                        <div class="achievement-metric">
+                            <span class="metric-value">DeepAI Finance</span>
+                            <span class="metric-label">Co-Founder & Lead Researcher</span>
+                        </div>
+                        <p class="achievement-note">ML models deployed in real markets</p>
                     </div>
                 </div>
             </div>

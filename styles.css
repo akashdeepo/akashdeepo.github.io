@@ -1146,11 +1146,130 @@ strong {
 }
 
 .achievement-content h3 {
-    margin-bottom: var(--space-md);
+    margin-bottom: var(--space-lg);
     color: var(--text-primary);
-    font-size: var(--text-xl);
+    font-size: var(--text-2xl);
     font-weight: 700;
     text-shadow: 0 2px 4px rgba(255, 255, 255, 0.3);
+}
+
+.achievement-metric {
+    margin-bottom: var(--space-lg);
+    text-align: center;
+}
+
+.metric-value {
+    display: block;
+    font-size: var(--text-4xl);
+    font-weight: 800;
+    color: var(--accent-primary);
+    margin-bottom: var(--space-xs);
+    text-shadow: 0 2px 6px rgba(218, 119, 86, 0.3);
+}
+
+.metric-label {
+    display: block;
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.achievement-badges {
+    display: flex;
+    gap: var(--space-sm);
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    padding: var(--space-sm) var(--space-md);
+    border-radius: var(--border-radius-sm);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.badge i {
+    font-size: var(--text-xs);
+}
+
+.badge.gold {
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(184, 134, 11, 0.2));
+    border: 1px solid rgba(255, 215, 0, 0.5);
+    color: #FFD700;
+}
+
+.badge.bronze {
+    background: linear-gradient(135deg, rgba(205, 127, 50, 0.2), rgba(139, 69, 19, 0.2));
+    border: 1px solid rgba(205, 127, 50, 0.5);
+    color: #CD7F32;
+}
+
+.badge.scholar,
+.badge.list {
+    background: linear-gradient(135deg, rgba(218, 119, 86, 0.2), rgba(189, 93, 58, 0.2));
+    border: 1px solid rgba(218, 119, 86, 0.5);
+    color: var(--accent-primary);
+}
+
+.badge:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.achievement-stats-row {
+    display: flex;
+    gap: var(--space-md);
+    justify-content: center;
+    margin-bottom: var(--space-lg);
+}
+
+.stat-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-xs);
+    padding: var(--space-md);
+    background: rgba(218, 119, 86, 0.05);
+    border: 1px solid rgba(218, 119, 86, 0.2);
+    border-radius: var(--border-radius-sm);
+    min-width: 80px;
+    transition: all 0.3s ease;
+}
+
+.stat-box:hover {
+    background: rgba(218, 119, 86, 0.1);
+    border-color: rgba(218, 119, 86, 0.4);
+    transform: translateY(-4px);
+}
+
+.stat-value {
+    font-size: var(--text-3xl);
+    font-weight: 800;
+    color: var(--accent-primary);
+    line-height: 1;
+}
+
+.stat-name {
+    font-size: var(--text-xs);
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+}
+
+.achievement-note {
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+    text-align: center;
+    font-style: italic;
 }
 
 .achievement-stats {
