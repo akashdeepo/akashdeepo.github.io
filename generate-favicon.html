@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Favicon Generator</title>
+</head>
+<body style="padding: 20px; font-family: Arial, sans-serif;">
+    <h1>Generate Favicons for Your Site</h1>
+    <p>Open this file in a browser, then right-click and save each canvas as an image.</p>
+    
+    <h2>favicon.ico (32x32)</h2>
+    <canvas id="favicon32" width="32" height="32" style="border: 1px solid #ccc;"></canvas>
+    
+    <h2>favicon-16x16.png</h2>
+    <canvas id="favicon16" width="16" height="16" style="border: 1px solid #ccc; image-rendering: pixelated; width: 64px; height: 64px;"></canvas>
+    
+    <h2>apple-touch-icon.png (180x180)</h2>
+    <canvas id="apple180" width="180" height="180" style="border: 1px solid #ccc;"></canvas>
+    
+    <h2>android-chrome-192x192.png</h2>
+    <canvas id="android192" width="192" height="192" style="border: 1px solid #ccc;"></canvas>
+    
+    <h2>android-chrome-512x512.png</h2>
+    <canvas id="android512" width="512" height="512" style="border: 1px solid #ccc;"></canvas>
+    
+    <script>
+        function drawIcon(canvasId, size) {
+            const canvas = document.getElementById(canvasId);
+            const ctx = canvas.getContext('2d');
+            
+            // Background gradient
+            const gradient = ctx.createLinearGradient(0, 0, size, size);
+            gradient.addColorStop(0, '#1e3c72');
+            gradient.addColorStop(1, '#2a5298');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, size, size);
+            
+            // Draw "AD" text
+            ctx.fillStyle = '#ffffff';
+            ctx.font = `bold ${size * 0.4}px Arial`;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('AD', size / 2, size / 2);
+            
+            // Add subtle border
+            ctx.strokeStyle = '#6b8cff';
+            ctx.lineWidth = Math.max(1, size / 32);
+            ctx.strokeRect(1, 1, size - 2, size - 2);
+        }
+        
+        // Generate all favicons
+        drawIcon('favicon32', 32);
+        drawIcon('favicon16', 16);
+        drawIcon('apple180', 180);
+        drawIcon('android192', 192);
+        drawIcon('android512', 512);
+        
+        // Instructions
+        console.log('Right-click each canvas and save as:');
+        console.log('1. favicon-32x32.png');
+        console.log('2. favicon-16x16.png');
+        console.log('3. apple-touch-icon.png');
+        console.log('4. android-chrome-192x192.png');
+        console.log('5. android-chrome-512x512.png');
+    </script>
+</body>
+</html>

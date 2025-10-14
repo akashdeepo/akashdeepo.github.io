@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Background Music Provider</title>
+</head>
+<body>
+    <!-- This page provides the background music audio element -->
+    <audio id="backgroundMusic" loop>
+        <!-- Free relaxing music sources -->
+        <source src="https://www.bensound.com/bensound-music/bensound-relaxing.mp3" type="audio/mpeg">
+        <source src="https://www.bensound.com/bensound-music/bensound-dreams.mp3" type="audio/mpeg">
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    </audio>
+    
+    <script>
+        // Make audio available to parent window
+        if (window.parent !== window) {
+            window.parent.postMessage({type: 'musicReady', audio: 'backgroundMusic'}, '*');
+        }
+    </script>
+</body>
+</html>
