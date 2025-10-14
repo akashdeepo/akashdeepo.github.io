@@ -206,32 +206,27 @@ function initializeMonteCarloBackground() {
 // -----------------------------------------------------------------------------
 function initializeMCBadgeToggle() {
     const badge = document.querySelector('.mc-info-badge');
-    if (!badge) return;
+    if (!badge) {
+        console.warn('Monte Carlo badge not found');
+        return;
+    }
 
-    // Toggle expanded state on click
+    console.log('Monte Carlo badge toggle initialized');
+
+    // Simple toggle on badge click
     badge.addEventListener('click', function(e) {
-        // Don't toggle if clicking on content when expanded
-        if (this.classList.contains('expanded') && e.target !== this && e.target !== this.querySelector('.mc-badge-icon')) {
-            return;
-        }
-
+        console.log('Badge clicked');
         this.classList.toggle('expanded');
+        e.stopPropagation();
     });
 
     // Close when clicking outside
     document.addEventListener('click', function(e) {
         if (!badge.contains(e.target) && badge.classList.contains('expanded')) {
+            console.log('Closing badge (clicked outside)');
             badge.classList.remove('expanded');
         }
     });
-
-    // Prevent closing when clicking inside the badge content
-    const badgeContent = badge.querySelector('.mc-badge-content');
-    if (badgeContent) {
-        badgeContent.addEventListener('click', function(e) {
-            e.stopPropagation();
-        });
-    }
 }
 
 // -----------------------------------------------------------------------------
