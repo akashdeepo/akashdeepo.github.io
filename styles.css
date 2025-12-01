@@ -1040,6 +1040,7 @@ strong {
 }
 
 .achievement-bar {
+    position: relative;
     display: flex;
     align-items: center;
     gap: var(--space-lg);
@@ -1054,6 +1055,7 @@ strong {
                 inset 0 -2px 0 rgba(218, 119, 86, 0.1);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: pointer;
+    overflow: hidden;
 }
 
 .achievement-bar::before {
@@ -1955,6 +1957,18 @@ strong {
     .skill-category {
         padding: var(--space-lg);
     }
+}
+
+/* -----------------------------------------------------------------------------
+   FOOTER
+   ----------------------------------------------------------------------------- */
+.footer {
+    text-align: center;
+    padding: var(--space-2xl) 0;
+}
+
+.footer p {
+    color: var(--text-secondary);
 }
 
 /* -----------------------------------------------------------------------------
