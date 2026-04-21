@@ -80,10 +80,10 @@ npx serve .
 5. Check Monte Carlo background performance
 
 ### Deployment
-No build step needed:
-1. Changes pushed to main branch automatically deploy via GitHub Pages
-2. Site is served from root directory
-3. Custom domain configured in repository settings
+No build step needed. Deployment is automated via [.github/workflows/deploy.yml](.github/workflows/deploy.yml):
+1. On push/PR to `main`, the workflow runs `npx html-validate index.html 404.html` and `npx linkinator . --recurse` (both currently non-blocking via `|| true` — check workflow logs rather than assuming success)
+2. On push to `main`, `peaceiris/actions-gh-pages@v3` publishes the repo root with cname `akashdeepo.github.io`
+3. Since the entire root is published, any file committed here is publicly accessible — don't commit local notes, screenshots, or scratch HTML unless intended
 
 ## Common Development Patterns
 
@@ -138,10 +138,12 @@ When making changes, maintain the balance between:
 
 **Active files** (used in production):
 - [index.html](index.html) - Main page
+- [404.html](404.html) - GitHub Pages 404 fallback (validated in CI alongside index.html)
 - [styles.css](styles.css) - Styles
 - [script-test.js](script-test.js) - Main JavaScript (loaded in index.html line 567)
 - [monte-carlo-background.js](monte-carlo-background.js) - Canvas animation
 - [site.webmanifest](site.webmanifest) - PWA manifest
+- [.htaccess](.htaccess) - Apache config (unused on GH Pages but present)
 - [robots.txt](robots.txt), [sitemap.xml](sitemap.xml) - SEO files
 - Favicon files: [favicon.ico](favicon.ico), [favicon.svg](favicon.svg), [apple-touch-icon.png](apple-touch-icon.png), etc.
 
