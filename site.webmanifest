@@ -1,21 +1,21 @@
 {
-    "name": "Akash Deep - Quantitative Finance Researcher",
+    "name": "Akash Deep - Mathematical Finance Researcher",
     "short_name": "Akash Deep",
-    "description": "PhD student in Mathematical Finance specializing in quantitative research, machine learning, and algorithmic trading.",
+    "description": "PhD researcher in Mathematical Finance at Texas Tech University. Machine learning, stochastic processes, and the structure hidden in market noise.",
     "icons": [
         {
-            "src": "/android-chrome-192x192.png",
-            "sizes": "192x192",
+            "src": "/apple-touch-icon.png",
+            "sizes": "180x180",
             "type": "image/png"
         },
         {
-            "src": "/android-chrome-512x512.png", 
-            "sizes": "512x512",
+            "src": "/favicon-32x32.png",
+            "sizes": "32x32",
             "type": "image/png"
         }
     ],
-    "theme_color": "#6b8cff",
-    "background_color": "#0a0e1a",
+    "theme_color": "#f5f0e4",
+    "background_color": "#f5f0e4",
     "display": "standalone",
     "start_url": "/",
     "orientation": "portrait-primary"

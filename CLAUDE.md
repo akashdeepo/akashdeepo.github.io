@@ -4,154 +4,63 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a personal portfolio website for Akash Deep, a PhD student in Mathematical Finance at Texas Tech University. It's built as a **static site with vanilla HTML, CSS, and JavaScript** - no build tools, no frameworks. The site showcases quantitative finance research, publications, and professional achievements with sophisticated interactive visualizations.
+Personal portfolio website for Akash Deep, a PhD student in Mathematical Finance at Texas Tech University. **Static site with vanilla HTML, CSS, and JavaScript** — no build tools, no frameworks. The July 2026 redesign ("Estuary" / "Drift & Diffusion") presents the site as a typeset manuscript: a generative river hero, publications set as animated figures with hover dossiers, and a letter-styled contact section.
 
 **Live URL**: https://akashdeepo.github.io/
 
 ## Architecture
 
-### Static Site Structure
-- **No build process required** - open [index.html](index.html) directly in a browser or use a simple HTTP server
-- All JavaScript is vanilla ES6+ with no transpilation needed
-- CSS uses modern features (CSS Grid, custom properties, backdrop filters) with theme switching
-- Hosted on GitHub Pages, so any push to main automatically deploys
+### Active files (production)
+- **[index.html](index.html)** — the whole site, one page. Sections are "sheets" numbered like a paper: hero (`#top`), `#abstract`, `#publications`, `#experience`, `#recognition`, `#correspondence`.
+- **[styles.css](styles.css)** — all styling. The **Estuary palette** lives as CSS custom properties on `:root` (day/parchment) and `[data-theme="night"]` (lamplit dark): paper `#f5f0e4`/`#171a14`, ink, teal `#3e6270`, moss, sage, copper accent `#b05633`. Includes a full `@media print` stylesheet that renders the site as a typeset CV.
+- **[river.js](river.js)** — `EstuaryRiver` class: the hero canvas. ~60 mean-reverting stochastic paths streaming left; the current bends around the cursor, clicks drop stones (ripples), paths pinch toward the headline word "converges." (measured from the `<em>` element, re-measured on font load/resize). Keyboard easter eggs: `C` = crash, `V` = volatility shock. Has an intro draw-in on first load. Pauses off-screen/hidden; static under reduced motion.
+- **[dossiers.js](dossiers.js)** — `DOSSIERS` array: one entry per publication in DOM order (`stat`, `statLabel`, `note`, `url`, `bibtex`). Summaries are drawn from the papers' actual abstracts — keep them accurate when editing.
+- **[main.js](main.js)** — everything else: 8 bespoke per-paper canvas figures (`FIGURES` array — each draws that paper's concept and animates while hovered), theme toggle (localStorage key `estuary-theme`), diamond nav active state, hover dossiers (floating torn-scrap card in the margin on desktop, inline expansion on touch), stat count-up + typewriter, BibTeX copy (per-paper and `#bibtexAll`), print-dossier injection, scroll reveals, `.count` number animations.
+- **[404.html](404.html)** — standalone "drifted downstream" page (validated in CI).
+- **[site.webmanifest](site.webmanifest)**, **[robots.txt](robots.txt)**, **[sitemap.xml](sitemap.xml)**, favicon files.
 
-### Core Files
-- **[index.html](index.html)**: Main page with all content - uses semantic sections (#home, #about, #research, #experience, #skills, #achievements, #contact)
-- **[styles.css](styles.css)**: Complete styling with CSS custom properties for theming. Two themes: light (default) and dark, controlled by `[data-theme]` attribute on `<body>`
-- **[script.js](script.js)** / **[script-test.js](script-test.js)**: Main interactivity - navigation, smooth scrolling, theme toggle, animations, custom cursor
-- **[monte-carlo-background.js](monte-carlo-background.js)**: Custom canvas-based animated background simulating financial price paths using Geometric Brownian Motion
+### Typography & external dependencies
+Google Fonts only: **Fraunces** (display serif — headlines, stats, signature), **Newsreader** (body serif), **IBM Plex Mono** (annotations, margin notes, labels). No JS libraries, no icon fonts (the classic site used Font Awesome; the current site uses none).
 
-### Monte Carlo Background System
-The most technically complex component is the Monte Carlo simulation background:
+### Theme system
+- `data-theme` attribute on `<html>` (`day` | `night`), set pre-paint by an inline head script from localStorage (`estuary-theme`) falling back to `prefers-color-scheme`.
+- All colors flow through CSS custom properties; canvases read them at draw time via `getComputedStyle`, so after a theme change JS calls `estuaryRiver.refreshColors()` and redraws thumbnails (wired in main.js).
 
-- **MonteCarloBackground class**: Renders 25+ animated price paths on canvas using stochastic calculus (Geometric Brownian Motion: dS = μS dt + σS dW)
-- **Interactive features**: Mouse movement influences drift/volatility, clicking spawns new paths, paths are attracted to cursor position
-- **Theme-aware**: Colors adapt when theme changes via `getThemeColors()` method
-- **Performance optimized**: Uses `requestAnimationFrame`, path recycling, and point limiting to maintain 60fps
-
-**Integration**: Loaded in `<head>`, initialized in `script.js` via `initializeMonteCarloBackground()`, stored in global `monteCarloInstance`
-
-### Theme System
-Two themes managed through CSS custom properties:
-- **Light mode** (default): Warm earth tones - `#eeece2` background, `#da7756` accents
-- **Dark mode**: Dark with warm highlights - `#1a1810` background, `#e88762` accents
-
-Theme switching:
-1. Button in navbar toggles `data-theme` attribute on `<body>`
-2. CSS custom properties in `:root` and `[data-theme="dark"]` handle color changes
-3. Theme saved to localStorage as `preferred-theme`
-4. Monte Carlo background colors update via `monteCarloInstance.initializePaths()`
-
-### External Dependencies
-All loaded from CDNs:
-- **Font Awesome 6.4.0** - Icons throughout the site
-- **Google Fonts** - Inter font family (referenced in CSS)
-- No JavaScript frameworks or libraries (no React, Vue, jQuery, etc.)
-
-### Content Structure
-The HTML is organized into semantic sections with BEM-like naming:
-- `.hero` - Landing section with stats and CTAs
-- `.about` - About text + education timeline
-- `.research` - Publication cards with status badges (published/submitted)
-- `.experience` - Professional timeline with dates and details
-- `.skills` - Grid of skill categories with tags
-- `.achievements` - Cards showcasing Kaggle medals, academic honors, research metrics
-- `.contact` - Email and social links
+### Key invariants when editing
+- Publications: `.fig` articles in `#publications`, the `FIGURES` array in main.js, and the `DOSSIERS` array in dossiers.js are **matched by DOM order**. Adding/reordering a paper means updating all three in the same position (a new paper reuses `FIGURES[i % 8]` if none is added).
+- Hero headline pinch targets `.hero h1 em` — keep the emphasized word if rewording the headline.
+- Metrics (12 publications · 63 citations · h-index 3, as of July 2026) appear in: meta description, `#publications` margin, `#recognition` ledger, JSON-LD — update all when Scholar changes.
+- Respect `prefers-reduced-motion` for any new animation (existing pattern: check `reduced`, provide static state).
 
 ## Development Workflow
 
-### Running Locally
+### Running locally
 ```bash
-# Option 1: Python
-python -m http.server 8000
-
-# Option 2: Node.js
-npx serve .
-
-# Then visit http://localhost:8000
+python -m http.server 8000   # or: npx serve .
+# visit http://localhost:8000
 ```
 
-### Testing Changes
-1. Make edits to HTML/CSS/JS files
-2. Refresh browser (hard refresh with Ctrl+Shift+R / Cmd+Shift+R for CSS changes)
-3. Test both light and dark themes
-4. Test responsive behavior (especially mobile menu at <768px breakpoint)
-5. Check Monte Carlo background performance
+### Testing changes
+1. Hard refresh (Ctrl+Shift+R) after CSS changes
+2. Test both day and night themes (toggle top-right)
+3. Test hover dossiers on desktop AND tap behavior at mobile widths
+4. Check `@media print` (Ctrl+P preview) still produces a clean CV
+5. Run `npx html-validate index.html 404.html` — keep it clean; CI runs it non-blocking (`|| true`) so check the output yourself
 
 ### Deployment
-No build step needed. Deployment is automated via [.github/workflows/deploy.yml](.github/workflows/deploy.yml):
-1. On push/PR to `main`, the workflow runs `npx html-validate index.html 404.html` and `npx linkinator . --recurse` (both currently non-blocking via `|| true` — check workflow logs rather than assuming success)
-2. On push to `main`, `peaceiris/actions-gh-pages@v3` publishes the repo root with cname `akashdeepo.github.io`
-3. Since the entire root is published, any file committed here is publicly accessible — don't commit local notes, screenshots, or scratch HTML unless intended
+Automated via [.github/workflows/deploy.yml](.github/workflows/deploy.yml):
+1. On push/PR to `main`: `npx html-validate index.html 404.html` and `npx linkinator . --recurse` (both non-blocking via `|| true` — check workflow logs rather than assuming success)
+2. On push to `main`: `peaceiris/actions-gh-pages@v3` publishes the repo root with cname `akashdeepo.github.io`
+3. The entire root is published — any committed file is publicly accessible; don't commit local notes, screenshots, or scratch files
 
-## Common Development Patterns
+## Archived files (kept for reference, not loaded)
+- [index-classic.html](index-classic.html) + [styles-classic.css](styles-classic.css) — the pre-2026 card-based site (still functional together with [script-test.js](script-test.js) and [monte-carlo-background.js](monte-carlo-background.js))
+- [script.js](script.js), [script-old.js](script-old.js), [styles-old.css](styles-old.css), [index-test.html](index-test.html) — older generations
+- [music.html](music.html), [create-favicon.html](create-favicon.html), [generate-favicon.html](generate-favicon.html) — utilities
+- [.htaccess](.htaccess) — Apache config (unused on GH Pages)
 
-### Adding New Content
-- **Research publication**: Add new `.research-card` in the `.research-grid` section of [index.html](index.html)
-- **Experience entry**: Add new `.timeline-item` in the `.experience .timeline`
-- **Skill category**: Add new `.skill-category.card` in `.skills-grid`
+**Stale documentation**: [README.md](README.md) describes a much older version of the site (Particles.js, Chart.js, three themes). Trust this file and the source over the README.
 
-### Modifying Styles
-- **Colors**: Edit CSS custom properties in `:root` and `[data-theme="dark"]` in [styles.css](styles.css)
-- **Spacing**: Use CSS custom properties `--space-xs` through `--space-4xl`
-- **Typography**: Use CSS custom properties `--text-xs` through `--text-5xl`
+## Content context
 
-### JavaScript Functionality
-All initialization happens in the main DOMContentLoaded event listener in [script.js](script.js):
-```javascript
-initializeNavigation();      // Nav menu, smooth scroll, active links
-initializeThemeSwitcher();   // Theme toggle button
-initializeAnimations();      // Intersection Observer for fade-in
-initializeLazyLoading();     // Lazy load images (if any)
-initializeMonteCarloBackground(); // Canvas animation
-initializeCustomCursor();    // Custom cursor (desktop only)
-```
-
-### Responsive Design
-- **Desktop**: Full navigation menu, custom cursor, multi-column layouts
-- **Tablet** (<768px): Hamburger menu, stacked grids, simplified timeline
-- **Mobile** (<480px): Single column, reduced spacing, touch-optimized
-
-### Accessibility Features
-- Skip link for keyboard navigation
-- ARIA labels on interactive elements
-- Semantic HTML structure
-- Focus indicators on all interactive elements
-- Reduced motion support: `@media (prefers-reduced-motion: reduce)` disables animations
-- Proper heading hierarchy (h1 → h2 → h3)
-
-## Quantitative Finance Context
-
-This is a portfolio for a mathematical finance researcher, so the design reflects this:
-- Monte Carlo simulations visualize stochastic processes (core to financial modeling)
-- Color scheme is professional academic (not flashy startup)
-- Content emphasizes publications, citations, research impact
-- Technical terminology is preserved (e.g., "Geometric Brownian Motion", "Rachev ratios", "stochastic calculus")
-
-When making changes, maintain the balance between:
-- **Technical credibility**: This represents a PhD researcher to academic/industry audiences
-- **Accessibility**: Non-specialists should still navigate easily
-- **Visual sophistication**: The Monte Carlo background demonstrates technical skill without overwhelming content
-
-## File Reference Map
-
-**Active files** (used in production):
-- [index.html](index.html) - Main page
-- [404.html](404.html) - GitHub Pages 404 fallback (validated in CI alongside index.html)
-- [styles.css](styles.css) - Styles
-- [script-test.js](script-test.js) - Main JavaScript (loaded in index.html line 567)
-- [monte-carlo-background.js](monte-carlo-background.js) - Canvas animation
-- [site.webmanifest](site.webmanifest) - PWA manifest
-- [.htaccess](.htaccess) - Apache config (unused on GH Pages but present)
-- [robots.txt](robots.txt), [sitemap.xml](sitemap.xml) - SEO files
-- Favicon files: [favicon.ico](favicon.ico), [favicon.svg](favicon.svg), [apple-touch-icon.png](apple-touch-icon.png), etc.
-
-**Deprecated/unused files** (keep for reference but not loaded):
-- [script.js](script.js), [script-old.js](script-old.js) - Previous JavaScript versions
-- [styles-old.css](styles-old.css) - Previous styles
-- [index-test.html](index-test.html) - Test version
-- [music.html](music.html) - Background music feature (not currently integrated)
-- [create-favicon.html](create-favicon.html), [generate-favicon.html](generate-favicon.html) - Utility pages
-
-**Note**: [script-test.js](script-test.js) is the actively loaded file, not [script.js](script.js).
+This portfolio represents a PhD researcher to academic and quant-industry audiences. The design language is "manuscript + river": stochastic-process visuals are drawn from the owner's actual research (the eight publication figures each depict that paper's concept — don't replace them with generic charts). Maintain technical credibility: terminology like "Geometric Brownian Motion", "Rachev ratios", "rough volatility" is intentional. Publication data (venues, citation counts, co-authors) must stay accurate — verify against Google Scholar before updating numbers.

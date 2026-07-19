@@ -3,579 +3,312 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- Primary Meta Tags -->
-    <title>Akash Deep - Quantitative Finance Researcher | PhD Student</title>
-    <meta name="title" content="Akash Deep - Quantitative Finance Researcher | PhD Student">
-    <meta name="description" content="PhD student in Mathematical Finance at Texas Tech University. Published researcher specializing in quantitative finance, machine learning, and algorithmic trading. Kaggle Competitions Expert with 5+ publications.">
-    <meta name="keywords" content="Quantitative Finance, Machine Learning, Algorithmic Trading, Financial Research, PhD Student, Kaggle Expert, Mathematical Finance, Texas Tech University">
-    <meta name="author" content="Akash Deep">
-    <meta name="robots" content="index, follow">
-    
-    <!-- Open Graph / Facebook -->
+    <title>Akash Deep — Mathematical Finance</title>
+    <meta name="description" content="Akash Deep — PhD researcher in Mathematical Finance at Texas Tech University. Machine learning, stochastic processes, and the structure hidden in market noise.">
+    <link rel="canonical" href="https://akashdeepo.github.io/">
+
     <meta property="og:type" content="website">
+    <meta property="og:title" content="Akash Deep — Mathematical Finance">
+    <meta property="og:description" content="PhD researcher at Texas Tech University. Machine learning, stochastic processes, and the structure hidden in market noise — 12 publications, 63 citations.">
     <meta property="og:url" content="https://akashdeepo.github.io/">
-    <meta property="og:title" content="Akash Deep - Quantitative Finance Researcher">
-    <meta property="og:description" content="PhD student specializing in quantitative finance, machine learning, and algorithmic trading. Published researcher with expertise in stochastic processes and AI-powered financial systems.">
-    <meta property="og:image" content="https://akashdeepo.github.io/android-chrome-512x512.png">
-    
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://akashdeepo.github.io/">
-    <meta property="twitter:title" content="Akash Deep - Quantitative Finance Researcher">
-    <meta property="twitter:description" content="PhD student specializing in quantitative finance, machine learning, and algorithmic trading.">
-    <meta property="twitter:image" content="https://akashdeepo.github.io/android-chrome-512x512.png">
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Akash Deep — Mathematical Finance">
+    <meta name="twitter:description" content="PhD researcher at Texas Tech University. Machine learning, stochastic processes, and the structure hidden in market noise.">
+
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <link rel="manifest" href="/site.webmanifest">
-    
-    <!-- Preconnect for performance -->
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-    
-    <!-- Stylesheets -->
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer">
-    
-    <!-- Scripts -->
-    <script src="monte-carlo-background.js"></script>
-    
-    <!-- Schema.org structured data -->
+    <meta name="theme-color" content="#f5f0e4" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#171a14" media="(prefers-color-scheme: dark)">
+
     <script type="application/ld+json">
     {
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Akash Deep",
-      "jobTitle": "PhD Student in Mathematical Finance",
-      "affiliation": {
-        "@type": "Organization",
-        "name": "Texas Tech University"
-      },
-      "url": "https://akashdeepo.github.io",
-      "email": "akash404deep@gmail.com",
-      "sameAs": [
-        "https://linkedin.com/in/akashdeepo",
-        "https://github.com/akashdeepo",
-        "https://www.kaggle.com/akashdeepo",
-        "https://leetcode.com/u/akashdeepo/"
-      ]
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Akash Deep",
+        "jobTitle": "PhD Student, Mathematical Finance",
+        "affiliation": { "@type": "Organization", "name": "Texas Tech University" },
+        "url": "https://akashdeepo.github.io/",
+        "email": "mailto:akash404deep@gmail.com",
+        "sameAs": [
+            "https://linkedin.com/in/akashdeepo",
+            "https://github.com/akashdeepo",
+            "https://www.kaggle.com/akashdeepo",
+            "https://www.deepaifinance.com/"
+        ]
     }
     </script>
-</head>
-<body data-theme="light">
-    <!-- Skip to content link for accessibility -->
-    <a href="#home" class="skip-link">Skip to main content</a>
-    
-    <!-- Custom Cursor -->
-    <div class="custom-cursor"></div>
-    
-    <!-- Monte Carlo Background -->
-    <div class="monte-carlo-container">
-        <canvas id="monte-carlo-canvas"></canvas>
-    </div>
 
-    <!-- Monte Carlo Info Badge (outside container for proper z-index) -->
-    <div class="mc-info-badge">
-        <div class="mc-badge-icon">
-            <i class="fas fa-chart-line"></i>
-        </div>
-        <div class="mc-badge-content">
-            <h4>Live Monte Carlo Simulation</h4>
-            <p>Real-time Geometric Brownian Motion paths</p>
-            <div class="mc-interactions">
-                <span><i class="fas fa-mouse"></i> Move to influence drift</span>
-                <span><i class="fas fa-hand-pointer"></i> Click to spawn paths</span>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container container">
-            <a href="#home" class="nav-brand">AD</a>
-            <ul class="nav-menu">
-                <li><a href="#home" class="nav-link">Home</a></li>
-                <li><a href="#about" class="nav-link">About</a></li>
-                <li><a href="#research" class="nav-link">Research</a></li>
-                <li><a href="#experience" class="nav-link">Experience</a></li>
-                <li><a href="#skills" class="nav-link">Skills</a></li>
-                <li><a href="#achievements" class="nav-link">Achievements</a></li>
-                <li><a href="#contact" class="nav-link">Contact</a></li>
-            </ul>
-            <div class="theme-toggle">
-                <button class="theme-toggle-btn" aria-label="Toggle dark mode" aria-pressed="false">
-                    <i class="fas fa-moon" aria-hidden="true"></i>
-                    <span class="fallback-text" style="display: none;">🌙</span>
-                </button>
-            </div>
-            <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
+    <!-- Set theme before first paint to avoid flash -->
+    <script>
+        (function () {
+            var stored = localStorage.getItem('estuary-theme');
+            var theme = stored || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'night' : 'day');
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <a class="skip-link" href="#abstract">Skip to content</a>
+
+    <!-- Fixed chrome -->
+    <button type="button" class="theme-toggle mono" id="themeToggle" aria-label="Toggle day and night theme">NIGHT</button>
+
+    <nav class="diamond-nav" aria-label="Sections">
+        <a href="#top" aria-label="Top"><span class="diamond"></span><span class="nav-name mono">the river</span></a>
+        <a href="#abstract" aria-label="Abstract"><span class="diamond"></span><span class="nav-name mono">1 — abstract</span></a>
+        <a href="#publications" aria-label="Publications"><span class="diamond"></span><span class="nav-name mono">2 — publications</span></a>
+        <a href="#experience" aria-label="Experience"><span class="diamond"></span><span class="nav-name mono">3 — experience</span></a>
+        <a href="#recognition" aria-label="Recognition"><span class="diamond"></span><span class="nav-name mono">4 — recognition</span></a>
+        <a href="#correspondence" aria-label="Correspondence"><span class="diamond"></span><span class="nav-name mono">5 — correspondence</span></a>
     </nav>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <div class="hero-text">
-                <h1 class="hero-title">
-                    <span class="name-highlight">Akash Deep</span>
-                </h1>
-                <h2 class="hero-subtitle">PhD Student in Mathematical Finance</h2>
-                <p class="hero-description">
-                    Texas Tech University | Supervised by Dr. Svetlozar Rachev<br>
-                    Specializing in machine learning applications in quantitative finance<br>
-                    Presidential Scholar | 11 Publications | H-Index: 3
-                </p>
-                <div class="hero-stats">
-                    <div class="stat">
-                        <span class="stat-number">11</span>
-                        <span class="stat-label">Publications</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-number">50</span>
-                        <span class="stat-label">Citations</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-number">3</span>
-                        <span class="stat-label">Kaggle Medals</span>
-                    </div>
-                </div>
-                <div class="hero-buttons">
-                    <a href="#research" class="btn btn-primary">View Research</a>
-                    <a href="#contact" class="btn btn-secondary">Get In Touch</a>
-                </div>
-            </div>
+    <!-- ═══════════ HERO ═══════════ -->
+    <header class="hero" id="top">
+        <canvas id="river" aria-hidden="true"></canvas>
+        <div class="hero-inner">
+            <p class="eyebrow mono">Akash Deep · Mathematical Finance · Texas Tech University</p>
+            <h1>Where randomness<br><em>converges.</em></h1>
+            <p class="hero-sub">Machine learning, stochastic processes, and the structure
+               hidden in market noise — researched with S.&#8202;T.&#8202;Rachev and F.&#8202;J.&#8202;Fabozzi.</p>
         </div>
-        <div class="scroll-indicator">
-            <span></span>
-        </div>
-    </section>
+        <p class="hero-hint mono" aria-hidden="true">the current bends around your cursor · drop a stone with a click</p>
+        <a class="scroll-cue mono" href="#abstract">scroll ↓</a>
+    </header>
 
-    <!-- About Section -->
-    <section id="about" class="section about">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">About Me</h2>
-                <p class="section-subtitle">Bridging the gap between mathematics, technology, and finance</p>
+    <main>
+    <!-- ═══════════ 1 · ABSTRACT ═══════════ -->
+    <section class="sheet" id="abstract">
+        <div class="sheet-grid">
+            <div class="sheet-main">
+                <h2><span class="secnum mono">1</span>Abstract</h2>
+                <p class="lede">I am a PhD student in Mathematical Finance at Texas Tech University,
+                   working under <span class="pencil">Dr. Svetlozar Rachev</span> on machine learning
+                   applications in quantitative finance.</p>
+                <p>My research applies stochastic processes, statistical models, and machine
+                   learning to questions of asset pricing, market microstructure, and
+                   volatility — from Random Forest models trading at minute frequency to the
+                   rough, long-memory behavior of volatility itself. Alongside the academic
+                   work, I co-founded DeepAI Finance LLC, where the same models meet real
+                   markets.</p>
             </div>
-            <div class="about-content">
-                <div class="about-text">
-                    <p class="about-description">
-                        I'm a PhD student in Mathematical Finance at Texas Tech University, specializing in quantitative research, 
-                        trading algorithms, and risk assessment. My work focuses on applying machine learning, stochastic processes, 
-                        and statistical models to optimize trading strategies and develop AI-powered financial analyst systems.
-                    </p>
-                    <div class="about-highlights">
-                        <div class="highlight card">
-                            <i class="fas fa-graduation-cap"></i>
-                            <div>
-                                <h3>Academic Excellence</h3>
-                                <p>PhD in Mathematical Finance with focus on stochastic processes and quantitative modeling</p>
-                            </div>
-                        </div>
-                        <div class="highlight card">
-                            <i class="fas fa-chart-line"></i>
-                            <div>
-                                <h3>Research Impact</h3>
-                                <p>Published in leading journals with focus on machine learning in financial markets</p>
-                            </div>
-                        </div>
-                        <div class="highlight card">
-                            <i class="fas fa-rocket"></i>
-                            <div>
-                                <h3>Innovation</h3>
-                                <p>Co-founder of DeepAI Finance LLC, developing AI-powered financial analyst systems</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="education-timeline">
-                    <h3>Education Timeline</h3>
-                    <div class="timeline">
-                        <div class="timeline-item">
-                            <div class="timeline-date">2024 - 2028</div>
-                            <div class="timeline-content">
-                                <h4>PhD in Mathematical Finance</h4>
-                                <p>Texas Tech University</p>
-                            </div>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="timeline-date">2022 - 2023</div>
-                            <div class="timeline-content">
-                                <h4>MS in Interdisciplinary Studies</h4>
-                                <p>Mathematical Finance and Quantum Physics Portfolio</p>
-                            </div>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="timeline-date">2018 - 2022</div>
-                            <div class="timeline-content">
-                                <h4>BS in Applied Physics</h4>
-                                <p>Mathematics Minor, Texas Tech University</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <aside class="sheet-margin mono" aria-label="Education notes">
+                <p class="note-label">— education</p>
+                <p>2024–2028<br>PhD, Mathematical Finance<br>Texas Tech University</p>
+                <p>2022–2023<br>MS, Interdisciplinary Studies<br>Math Finance &amp; Quantum Physics</p>
+                <p>2018–2022<br>BS, Applied Physics<br>Mathematics minor, TTU</p>
+                <p class="note-accent">— Presidential Scholar,<br>&nbsp;&nbsp; full PhD funding</p>
+            </aside>
         </div>
     </section>
 
-    <!-- Research Section -->
-    <section id="research" class="section research">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Research & Publications</h2>
-                <p class="section-subtitle">Working under Dr. Svetlozar Rachev (21,000+ citations) on machine learning applications in mathematical finance</p>
-            </div>
-            <div class="research-grid">
-                <div class="research-card featured card">
-                    <div class="research-header">
-                        <span class="research-status submitted">Submitted 2025</span>
-                        <h3>Probability Weighting Meets Heavy Tails: An Econometric Framework for Behavioral Asset Pricing</h3>
-                        <p class="research-journal">arXiv Preprint</p>
-                    </div>
-                    <div class="research-content">
-                        <p>Novel econometric framework integrating probability weighting functions from behavioral economics with heavy-tailed distributions for asset pricing, bridging behavioral finance with quantitative risk management.</p>
-                        <div class="research-authors">
-                            <strong>Co-authors:</strong> Svetlozar T. Rachev, Frank J. Fabozzi
-                        </div>
-                    </div>
-                </div>
+    <!-- ═══════════ 2 · PUBLICATIONS ═══════════ -->
+    <section class="sheet" id="publications">
+        <div class="sheet-grid">
+            <div class="sheet-main">
+                <h2><span class="secnum mono">2</span>Selected publications</h2>
 
-                <div class="research-card featured card">
-                    <div class="research-header">
-                        <span class="research-status submitted">Submitted 2025</span>
-                        <h3>Binary Tree Option Pricing Under Market Microstructure Effects</h3>
-                        <p class="research-journal">Journal of Computational Finance</p>
-                    </div>
-                    <div class="research-content">
-                        <p>Developed Random Forest-enhanced binomial tree framework incorporating market microstructure frictions with improved option pricing accuracy while preserving no-arbitrage conditions.</p>
-                        <div class="research-authors">
-                            <strong>Co-authors:</strong> Chris Monico, W. Brent Lindquist, Svetlozar T. Rachev, Frank J. Fabozzi
-                        </div>
-                    </div>
-                </div>
+                <article class="fig">
+                    <canvas class="figthumb" width="236" height="156" aria-hidden="true"></canvas>
+                    <p class="figlabel mono">Fig. 1 · arXiv:2605.24285 · 2026 · preprint</p>
+                    <h3><a href="https://arxiv.org/abs/2605.24285" target="_blank" rel="noopener">Memory, Roughness, and Information Persistence in Financial Markets: A Structural Approach to Volatility Forecasting</a></h3>
+                    <p class="figdesc">Long-memory dynamics and rough-volatility behavior as reduced-form
+                       indicators of how uncertainty propagates and decays in markets.</p>
+                    <p class="figauth mono">w/ N. Appiah, S.T. Rachev</p>
+                </article>
 
-                <div class="research-card published card">
-                    <div class="research-header">
-                        <span class="research-status published">Published March 2025</span>
-                        <h3>Risk-Adjusted Performance of Random Forest Models in High-Frequency Trading</h3>
-                        <p class="research-journal">Journal of Risk and Financial Management</p>
-                    </div>
-                    <div class="research-content">
-                        <p>Evaluated integration of technical indicators with Random Forest regression models using minute-level SPY data, demonstrating superior risk-adjusted metrics with Rachev ratios between 0.919 and 0.961.</p>
-                        <a href="https://doi.org/10.3390/jrfm18030142" class="research-link" target="_blank">
-                            <i class="fas fa-external-link-alt"></i> View Publication
-                        </a>
-                    </div>
-                </div>
+                <article class="fig">
+                    <canvas class="figthumb" width="236" height="156" aria-hidden="true"></canvas>
+                    <p class="figlabel mono">Fig. 2 · arXiv:2607.03888 · 2026 · preprint</p>
+                    <h3><a href="https://arxiv.org/abs/2607.03888" target="_blank" rel="noopener">Local Gaussian Correlation in the Tails: A Scarcity Diagnostic, an Optimal Local Bandwidth, and the Limits of Adaptivity</a></h3>
+                    <p class="figdesc">Measuring tail dependence where data is scarcest — and the
+                       fundamental limits of adaptive estimation there.</p>
+                    <p class="figauth mono">w/ G. Deep</p>
+                </article>
 
-                <div class="research-card published card">
-                    <div class="research-header">
-                        <span class="research-status published">Published May 2024</span>
-                        <h3>Advanced Financial Market Forecasting: Integrating Monte Carlo Simulations with Ensemble ML Models</h3>
-                        <p class="research-journal">Quantitative Finance and Economics</p>
-                    </div>
-                    <div class="research-content">
-                        <p>Developed a hybrid model combining Monte Carlo simulations with ML models (Random Forest, LSTM, SVM), improving SPY ETF and major stock predictions by 18% through dynamic risk-adjusted analysis.</p>
-                        <a href="https://www.aimspress.com/article/10.3934/QFE.2024011" class="research-link" target="_blank">
-                            <i class="fas fa-external-link-alt"></i> View Publication
-                        </a>
-                    </div>
-                </div>
+                <article class="fig">
+                    <canvas class="figthumb" width="236" height="156" aria-hidden="true"></canvas>
+                    <p class="figlabel mono">Fig. 3 · J. Behav. &amp; Exp. Finance 49 · 2026 · published</p>
+                    <h3><a href="https://doi.org/10.1016/j.jbef.2026.101159" target="_blank" rel="noopener">Google Trends–Augmented XGBoost for Market Volatility Prediction: A Machine Learning Early-Warning System</a></h3>
+                    <p class="figdesc">Search-attention data as an early-warning signal for volatility.</p>
+                    <p class="figauth mono">w/ G. Deep, S.T. Rachev, F.J. Fabozzi</p>
+                </article>
 
-                <div class="research-card published card">
-                    <div class="research-header">
-                        <span class="research-status published">Published 2023</span>
-                        <h3>Reinforcement Learning in Financial Markets: A Study on Dynamic Model Weight Assignment</h3>
-                        <p class="research-journal">International Journal of Computer Science and Telecommunications</p>
-                    </div>
-                    <div class="research-content">
-                        <p>Explored reinforcement learning techniques for dynamic portfolio optimization, developing adaptive algorithms that adjust model weights based on market conditions to improve trading performance.</p>
-                    </div>
-                </div>
+                <article class="fig">
+                    <canvas class="figthumb" width="236" height="156" aria-hidden="true"></canvas>
+                    <p class="figlabel mono">Fig. 4 · arXiv:2511.16563 · 2025 · under review</p>
+                    <h3><a href="https://arxiv.org/abs/2511.16563" target="_blank" rel="noopener">Probability Weighting Meets Heavy Tails: An Econometric Framework for Behavioral Asset Pricing</a></h3>
+                    <p class="figdesc">Behavioral probability weighting joined with heavy-tailed
+                       distributions; outperforms Gaussian benchmarks across 86 assets.</p>
+                    <p class="figauth mono">w/ S.T. Rachev, F.J. Fabozzi</p>
+                </article>
 
-                <div class="research-card published card">
-                    <div class="research-header">
-                        <span class="research-status published">Published 2023</span>
-                        <h3>A Multifactor Analysis Model for Stock Market Prediction</h3>
-                        <p class="research-journal">International Journal of Computer Science and Telecommunications</p>
-                    </div>
-                    <div class="research-content">
-                        <p>Developed a comprehensive multifactor model integrating fundamental, technical, and sentiment analysis factors to enhance stock market prediction accuracy through systematic factor evaluation.</p>
-                    </div>
-                </div>
+                <article class="fig">
+                    <canvas class="figthumb" width="236" height="156" aria-hidden="true"></canvas>
+                    <p class="figlabel mono">Fig. 5 · arXiv:2507.16701 · 2025 · under review</p>
+                    <h3><a href="https://arxiv.org/abs/2507.16701" target="_blank" rel="noopener">Binary Tree Option Pricing Under Market Microstructure Effects: A Random Forest Approach</a></h3>
+                    <p class="figdesc">A machine-learning binomial tree that admits bid–ask spreads and
+                       order flow while preserving no-arbitrage.</p>
+                    <p class="figauth mono">w/ C. Monico, W.B. Lindquist, S.T. Rachev, F.J. Fabozzi</p>
+                </article>
 
-                <div class="research-card published card">
-                    <div class="research-header">
-                        <span class="research-status published">Published 2026</span>
-                        <h3>Google Trends–Augmented XGBoost for Market Volatility Prediction: A Machine Learning Early-Warning System</h3>
-                        <p class="research-journal">Journal of Behavioral and Experimental Finance, 49, 101159</p>
-                    </div>
-                    <div class="research-content">
-                        <p>Novel approach combining Google Trends sentiment data with XGBoost algorithms to create an early-warning system for market volatility, demonstrating improved predictive power through alternative data integration.</p>
-                        <div class="research-authors">
-                            <strong>Co-authors:</strong> Gagan Deep, Svetlozar T. Rachev, Frank J. Fabozzi
-                        </div>
-                        <a href="https://doi.org/10.1016/j.jbef.2026.101159" class="research-link" target="_blank">
-                            <i class="fas fa-external-link-alt"></i> View Publication
-                        </a>
-                    </div>
-                </div>
+                <article class="fig">
+                    <canvas class="figthumb" width="236" height="156" aria-hidden="true"></canvas>
+                    <p class="figlabel mono">Fig. 6 · J. Risk &amp; Financial Mgmt. 18(3) · 2025 · <span class="cite">27 citations</span></p>
+                    <h3><a href="https://doi.org/10.3390/jrfm18030142" target="_blank" rel="noopener">Risk-Adjusted Performance of Random Forest Models in High-Frequency Trading</a></h3>
+                    <p class="figdesc">Technical indicators and Random Forests at minute frequency,
+                       judged honestly — including where buy-and-hold wins.</p>
+                    <p class="figauth mono">w/ A. Shirvani, C. Monico, S.T. Rachev, F.J. Fabozzi</p>
+                </article>
 
-                <div class="research-card card">
-                    <div class="research-header">
-                        <span class="research-status submitted">Preprint 2025</span>
-                        <h3>Interpretable Hypothesis-Driven Trading: A Rigorous Walk-Forward Validation Framework for Market Microstructure Signals</h3>
-                        <p class="research-journal">arXiv:2512.12924</p>
-                    </div>
-                    <div class="research-content">
-                        <p>Walk-forward validation framework combining interpretable hypothesis-driven signals with reinforcement learning and strict out-of-sample testing. Validated across 5 microstructure patterns on 100 US equities (2015–2024), achieving market-neutral performance (β = 0.058) with exceptional downside protection (max drawdown −2.76%) and strong regime dependence on high-volatility periods.</p>
-                        <div class="research-authors">
-                            <strong>Co-authors:</strong> Gagan Deep, William Lamptey
-                        </div>
-                        <a href="https://arxiv.org/abs/2512.12924" class="research-link" target="_blank">
-                            <i class="fas fa-external-link-alt"></i> View Preprint
-                        </a>
-                    </div>
+                <article class="fig">
+                    <canvas class="figthumb" width="236" height="156" aria-hidden="true"></canvas>
+                    <p class="figlabel mono">Fig. 7 · Quant. Finance &amp; Economics 8(2) · 2024 · <span class="cite">25 citations</span></p>
+                    <h3><a href="https://www.aimspress.com/article/10.3934/QFE.2024011" target="_blank" rel="noopener">Advanced Financial Market Forecasting: Integrating Monte Carlo Simulations with Ensemble Machine Learning Models</a></h3>
+                    <p class="figdesc">A hybrid of Monte Carlo simulation and ensemble learners,
+                       improving SPY prediction by 18% on risk-adjusted terms.</p>
+                    <p class="figauth mono">solo author</p>
+                </article>
+
+                <article class="fig">
+                    <canvas class="figthumb" width="236" height="156" aria-hidden="true"></canvas>
+                    <p class="figlabel mono">Fig. 8 · arXiv:2512.12924 · 2025 · preprint</p>
+                    <h3><a href="https://arxiv.org/abs/2512.12924" target="_blank" rel="noopener">Interpretable Hypothesis-Driven Trading: A Rigorous Walk-Forward Validation Framework for Market Microstructure Signals</a></h3>
+                    <p class="figdesc">Five microstructure hypotheses, 100 equities, a decade of data,
+                       strict out-of-sample discipline: market-neutral (β = 0.058), max drawdown −2.76%.</p>
+                    <p class="figauth mono">w/ G. Deep, W. Lamptey</p>
+                </article>
+
+                <div class="earlier">
+                    <p class="note-label mono">— earlier work</p>
+                    <ul class="mono">
+                        <li>Reinforcement Learning in Financial Markets · IJCST 14(3) · 2023</li>
+                        <li>A Multifactor Analysis Model for Stock Market Prediction · IJCST 14(1) · 2023 · <span class="cite">8 citations</span></li>
+                        <li>Ultrarelativistic limits of the Fermi gas · w/ L. Grave de Peralta · 2022</li>
+                        <li>Relativistic Quantum Mechanics for Undergrads · Bull. Am. Phys. Soc. 66 · 2021</li>
+                    </ul>
+                    <button type="button" class="bibtex-all mono" id="bibtexAll">copy all bibtex ⧉</button>
                 </div>
             </div>
+            <aside class="sheet-margin mono" aria-label="Research metrics notes">
+                <p class="note-label">— metrics, Jul 2026</p>
+                <p>63 citations<br>h-index 3 · i10-index 2<br>12 publications</p>
+                <p class="note-accent">— hover a figure to<br>&nbsp;&nbsp; inspect it</p>
+            </aside>
         </div>
     </section>
 
-    <!-- Experience Section -->
-    <section id="experience" class="section experience">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Professional Experience</h2>
-                <p class="section-subtitle">Research, innovation, and leadership in quantitative finance</p>
-            </div>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-date">2024 - Present</div>
-                    <div class="timeline-content">
-                        <h3>PhD Student & Researcher</h3>
-                        <h4>Mathematical Finance, Texas Tech University</h4>
-                        <p><strong>Supervisor:</strong> Dr. Svetlozar Rachev</p>
-                        <ul>
-                            <li>Developing statistical models for asset pricing and market microstructure analysis</li>
-                            <li>Collaborating with established researchers (Rachev, Fabozzi) on option pricing models</li>
-                            <li>Applying machine learning and stochastic processes to high-frequency trading optimization</li>
-                            <li>Published research on Random Forest models, Monte Carlo simulations, and reinforcement learning in finance</li>
-                        </ul>
-                    </div>
-                </div>
+    <!-- ═══════════ 3 · EXPERIENCE ═══════════ -->
+    <section class="sheet" id="experience">
+        <div class="sheet-grid">
+            <div class="sheet-main">
+                <h2><span class="secnum mono">3</span>Experience</h2>
 
-                <div class="timeline-item featured">
-                    <div class="timeline-date">2022 - Present</div>
-                    <div class="timeline-content">
-                        <h3>Co-Founder & Lead Researcher</h3>
-                        <h4>DeepAI Finance LLC</h4>
-                        <ul>
-                            <li>Developing AI-powered financial analyst platform using advanced ML models and fine-tuned LLMs</li>
-                            <li>Applied quantitative research to personal portfolio management and systematic investment strategies</li>
-                            <li>Building full-stack financial analysis tools with React, FastAPI, and Python-based quantitative models</li>
-                            <li>Bridging academic research and practical applications in algorithmic trading systems</li>
-                        </ul>
-                    </div>
-                </div>
+                <article class="entry">
+                    <p class="figlabel mono">2024 — present · Lubbock, TX</p>
+                    <h3>PhD Researcher, Mathematical Finance</h3>
+                    <p class="entry-org mono">Texas Tech University · adv. S.T. Rachev</p>
+                    <p class="figdesc">Statistical models for asset pricing and market microstructure;
+                       option pricing with Rachev and Fabozzi; machine learning and stochastic
+                       processes applied to high-frequency trading.</p>
+                </article>
 
-                <div class="timeline-item">
-                    <div class="timeline-date">2024 - Present</div>
-                    <div class="timeline-content">
-                        <h3>Teaching Assistant & Student Assistant</h3>
-                        <h4>Texas Tech University</h4>
-                        <ul>
-                            <li>Providing mathematics tutoring for undergraduate students across calculus, statistics, and linear algebra</li>
-                            <li>Translating complex mathematical concepts into accessible explanations for diverse student populations</li>
-                            <li>Managing departmental operations including scheduling, phone systems, and administrative coordination</li>
-                            <li>Developing communication skills essential for client-facing quantitative finance roles</li>
-                        </ul>
-                    </div>
-                </div>
+                <article class="entry">
+                    <p class="figlabel mono">2022 — present</p>
+                    <h3>Co-Founder &amp; Lead Researcher</h3>
+                    <p class="entry-org mono">DeepAI Finance LLC · deepaifinance.com</p>
+                    <p class="figdesc">An AI-powered financial analyst platform — fine-tuned LLMs and
+                       quantitative models behind a React/FastAPI stack — where academic research
+                       meets live portfolios.</p>
+                </article>
+
+                <article class="entry">
+                    <p class="figlabel mono">2024 — present</p>
+                    <h3>Teaching Assistant</h3>
+                    <p class="entry-org mono">Texas Tech University</p>
+                    <p class="figdesc">Mathematics tutoring across calculus, statistics, and linear
+                       algebra — practice in making the complex accessible.</p>
+                </article>
             </div>
+            <aside class="sheet-margin mono" aria-label="Toolkit notes">
+                <p class="note-label">— toolkit</p>
+                <p>Python · R · MATLAB · C++</p>
+                <p>PyTorch · XGBoost · scikit-learn · Hugging Face</p>
+                <p>QuantLib · backtrader · Bloomberg API</p>
+                <p>stochastic calculus · Monte Carlo · time series · factor models</p>
+                <p>React · FastAPI · Docker · AWS</p>
+            </aside>
         </div>
     </section>
 
-    <!-- Skills Section -->
-    <section id="skills" class="section skills">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Technical Skills</h2>
-                <p class="section-subtitle">Expertise spanning quantitative finance, machine learning, and full-stack development</p>
+    <!-- ═══════════ 4 · RECOGNITION ═══════════ -->
+    <section class="sheet" id="recognition">
+        <div class="sheet-grid">
+            <div class="sheet-main">
+                <h2><span class="secnum mono">4</span>Recognition</h2>
+                <dl class="ledger">
+                    <div class="ledger-row">
+                        <dt>Kaggle Competitions Expert</dt>
+                        <dd class="mono">top 1% · rank <span class="count">1,237</span> / <span class="count">201,885</span> · <span class="count">1</span> gold, <span class="count">2</span> bronze</dd>
+                    </div>
+                    <div class="ledger-row">
+                        <dt>Presidential Scholar</dt>
+                        <dd class="mono">full PhD funding · Texas Tech University</dd>
+                    </div>
+                    <div class="ledger-row">
+                        <dt>Research impact</dt>
+                        <dd class="mono"><span class="count">12</span> publications · <span class="count">63</span> citations · h-index <span class="count">3</span></dd>
+                    </div>
+                    <div class="ledger-row">
+                        <dt>DeepAI Finance</dt>
+                        <dd class="mono">co-founder · AI trading systems in real markets</dd>
+                    </div>
+                </dl>
             </div>
-            <div class="skills-grid grid grid-3">
-                <div class="skill-category card">
-                    <h3><i class="fas fa-code"></i> Programming Languages</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Python</span>
-                        <span class="skill-tag">MATLAB</span>
-                        <span class="skill-tag">JavaScript</span>
-                        <span class="skill-tag">R</span>
-                        <span class="skill-tag">C++</span>
-                    </div>
-                </div>
-
-                <div class="skill-category card">
-                    <h3><i class="fas fa-brain"></i> ML Frameworks</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">PyTorch</span>
-                        <span class="skill-tag">TensorFlow</span>
-                        <span class="skill-tag">Scikit-Learn</span>
-                        <span class="skill-tag">XGBoost</span>
-                        <span class="skill-tag">LightGBM</span>
-                        <span class="skill-tag">Hugging Face</span>
-                    </div>
-                </div>
-
-                <div class="skill-category card">
-                    <h3><i class="fas fa-chart-line"></i> Financial Tools</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">QuantLib</span>
-                        <span class="skill-tag">yfinance</span>
-                        <span class="skill-tag">backtrader</span>
-                        <span class="skill-tag">Bloomberg API</span>
-                        <span class="skill-tag">ta-lib</span>
-                        <span class="skill-tag">QuantConnect</span>
-                    </div>
-                </div>
-
-                <div class="skill-category card">
-                    <h3><i class="fas fa-calculator"></i> Quantitative Methods</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Time Series Analysis</span>
-                        <span class="skill-tag">Monte Carlo Simulations</span>
-                        <span class="skill-tag">Stochastic Calculus</span>
-                        <span class="skill-tag">Statistical Arbitrage</span>
-                        <span class="skill-tag">Factor Modeling</span>
-                        <span class="skill-tag">Risk Management</span>
-                    </div>
-                </div>
-
-                <div class="skill-category card">
-                    <h3><i class="fas fa-robot"></i> ML Algorithms</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">LSTM Networks</span>
-                        <span class="skill-tag">Random Forests</span>
-                        <span class="skill-tag">Gradient Boosting</span>
-                        <span class="skill-tag">SVMs</span>
-                        <span class="skill-tag">Reinforcement Learning</span>
-                        <span class="skill-tag">Transformers</span>
-                    </div>
-                </div>
-
-                <div class="skill-category card">
-                    <h3><i class="fas fa-globe"></i> Web Development</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">React</span>
-                        <span class="skill-tag">FastAPI</span>
-                        <span class="skill-tag">Flask</span>
-                        <span class="skill-tag">REST APIs</span>
-                        <span class="skill-tag">Docker</span>
-                        <span class="skill-tag">AWS</span>
-                    </div>
-                </div>
-            </div>
+            <aside class="sheet-margin mono" aria-label="Verification notes">
+                <p class="note-accent">— verified against<br>&nbsp;&nbsp; Google Scholar &amp; Kaggle,<br>&nbsp;&nbsp; July 2026</p>
+            </aside>
         </div>
     </section>
 
-    <!-- Achievements Section -->
-    <section id="achievements" class="section achievements">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Achievements & Recognition</h2>
-            </div>
-            <div class="achievements-list">
-                <div class="achievement-bar">
-                    <i class="fab fa-kaggle"></i>
-                    <div class="achievement-text">
-                        <span class="achievement-title">Kaggle Competitions Expert</span>
-                        <span class="achievement-subtitle">Top 1% • Rank 1,237 of 201,885 • 1 Gold, 2 Bronze</span>
-                    </div>
-                </div>
-
-                <div class="achievement-bar">
-                    <i class="fas fa-graduation-cap"></i>
-                    <div class="achievement-text">
-                        <span class="achievement-title">Presidential Scholar</span>
-                        <span class="achievement-subtitle">Full PhD Funding • Texas Tech University</span>
-                    </div>
-                </div>
-
-                <div class="achievement-bar">
-                    <i class="fas fa-book-open"></i>
-                    <div class="achievement-text">
-                        <span class="achievement-title">Research Impact</span>
-                        <span class="achievement-subtitle">11 Publications • 50 Citations • H-Index: 3</span>
-                    </div>
-                </div>
-
-                <div class="achievement-bar">
-                    <i class="fas fa-rocket"></i>
-                    <div class="achievement-text">
-                        <span class="achievement-title">DeepAI Finance Co-Founder</span>
-                        <span class="achievement-subtitle">AI-Powered Trading Systems in Real Markets</span>
-                    </div>
-                </div>
+    <!-- ═══════════ 5 · CORRESPONDENCE ═══════════ -->
+    <section class="sheet" id="correspondence">
+        <div class="sheet-grid">
+            <div class="sheet-main">
+                <h2><span class="secnum mono">5</span>Correspondence</h2>
+                <p class="lede letter">Dear reader,</p>
+                <p class="letter">If your work touches quantitative research, machine learning,
+                   or the structure of markets — or you simply have something worth
+                   discussing — my desk is open. The fastest currents to me:</p>
+                <ul class="links mono">
+                    <li><a href="mailto:akash404deep@gmail.com">akash404deep@gmail.com</a><span class="link-note"> — email</span></li>
+                    <li><a href="https://linkedin.com/in/akashdeepo" target="_blank" rel="noopener">linkedin.com/in/akashdeepo</a></li>
+                    <li><a href="https://github.com/akashdeepo" target="_blank" rel="noopener">github.com/akashdeepo</a></li>
+                    <li><a href="https://www.kaggle.com/akashdeepo" target="_blank" rel="noopener">kaggle.com/akashdeepo</a></li>
+                    <li><a href="https://www.deepaifinance.com/" target="_blank" rel="noopener">deepaifinance.com</a></li>
+                    <li><a href="https://leetcode.com/u/akashdeepo/" target="_blank" rel="noopener">leetcode.com/u/akashdeepo</a></li>
+                </ul>
+                <p class="letter-close">With regards from Lubbock, Texas,</p>
+                <p class="signature">Akash Deep</p>
             </div>
         </div>
     </section>
+    </main>
 
-    <!-- Contact Section -->
-    <section id="contact" class="section contact">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Get In Touch</h2>
-                <p class="section-subtitle">Let's discuss opportunities in quantitative finance, research collaboration, or AI innovation</p>
-            </div>
-            <div class="contact-grid">
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <i class="fas fa-envelope"></i>
-                        <div class="contact-details">
-                            <h3>Email</h3>
-                            <a href="mailto:akash404deep@gmail.com">akash404deep@gmail.com</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="social-links">
-                    <a href="https://www.deepaifinance.com/" target="_blank" class="social-link">
-                        <i class="fas fa-globe"></i>
-                        <span>DeepAI Finance</span>
-                    </a>
-                    <a href="https://linkedin.com/in/akashdeepo" target="_blank" class="social-link">
-                        <i class="fab fa-linkedin"></i>
-                        <span>LinkedIn</span>
-                    </a>
-                    <a href="https://github.com/akashdeepo" target="_blank" class="social-link">
-                        <i class="fab fa-github"></i>
-                        <span>GitHub</span>
-                    </a>
-                    <a href="https://www.kaggle.com/akashdeepo" target="_blank" class="social-link">
-                        <i class="fab fa-kaggle"></i>
-                        <span>Kaggle</span>
-                    </a>
-                    <a href="https://leetcode.com/u/akashdeepo/" target="_blank" class="social-link">
-                        <i class="fas fa-code"></i>
-                        <span>LeetCode</span>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2025 Akash Deep. All rights reserved. Built with passion for quantitative finance and AI.</p>
-        </div>
+    <footer class="colophon mono">
+        <p>Set in Fraunces, Newsreader &amp; IBM Plex Mono. The river is ~60 stochastic
+           paths, redrawn each frame — it answers to C and V. © 2026 Akash Deep.</p>
     </footer>
 
-    <script src="script-test.js" defer></script>
+    <script src="river.js"></script>
+    <script src="dossiers.js"></script>
+    <script src="main.js"></script>
 </body>
 </html>
