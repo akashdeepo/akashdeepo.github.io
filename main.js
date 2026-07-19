@@ -613,23 +613,48 @@ window.addEventListener('DOMContentLoaded', () => {
                 fig.addEventListener('focusout', scheduleHide);
             });
         } else {
-            /* touch: tap a figure to tear its dossier open inline */
+            /* touch: the whole card is one tap target — title included.
+               Tapping opens the dossier (navigation lives on its
+               "read →"); tapping again, or another paper, closes it.  */
+            let open = null;   // { fig, card, runner }
+
+            function closeOpen() {
+                if (!open) return;
+                const { fig, card, runner } = open;
+                open = null;
+                fig.classList.remove('open');
+                if (runner) runner.stop();
+                card.classList.remove('show');
+                clearTimers(card);
+                setTimeout(() => card.remove(), 300);
+            }
+
             figs.forEach((fig, i) => {
                 const d = DOSSIERS[i];
                 if (!d) return;
-                let inline = null;
+                const runner = runners.find(r => r.canvas === fig.querySelector('.figthumb'));
+
                 fig.addEventListener('click', (e) => {
-                    if (e.target.closest('a, button')) return;
-                    if (inline) {
-                        clearTimers(inline);
-                        inline.remove();
-                        inline = null;
-                    } else {
-                        inline = buildDossier(d);
-                        inline.classList.add('dossier-inline');
-                        fig.appendChild(inline);
-                        performDossier(inline, d);
-                    }
+                    // taps inside an open dossier behave normally
+                    if (e.target.closest('.dossier')) return;
+                    // the title link opens the dossier instead of navigating
+                    const a = e.target.closest('a');
+                    if (a) e.preventDefault();
+
+                    if (open && open.fig === fig) { closeOpen(); return; }
+                    closeOpen();
+
+                    const card = buildDossier(d);
+                    card.classList.add('dossier-inline');
+                    fig.appendChild(card);
+                    fig.classList.add('open');
+                    if (runner) runner.start();      // the figure runs while inspected
+                    open = { fig, card, runner };
+                    requestAnimationFrame(() => {
+                        card.classList.add('show');
+                        performDossier(card, d);
+                        if (!reduced) card.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+                    });
                 });
             });
         }
